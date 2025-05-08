@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35931.197 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calorie-Tracker", "Calorie-Tracker.csproj", "{C346B870-67DE-4BE8-90E4-878ED81FF813}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C346B870-67DE-4BE8-90E4-878ED81FF813}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C346B870-67DE-4BE8-90E4-878ED81FF813}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C346B870-67DE-4BE8-90E4-878ED81FF813}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C346B870-67DE-4BE8-90E4-878ED81FF813}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {61443C3A-5D13-497D-AEB0-AED9896E6858}
+	EndGlobalSection
+EndGlobal
