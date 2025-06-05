@@ -17,7 +17,10 @@ public class AppDbContextFactory : IDesignTimeDbContextFactory<AppDbContext>
         var connectionString = configuration.GetConnectionString("DefaultConnection");
 
         // FIXME: This is here temporary until I fix the builder
-        optionsBuilder.UseNpgsql(@"Server=localhost;User Id=postgres;Password=SatoriSama;Database=CalorieDB;");
+        //optionsBuilder.UseNpgsql(@"Server=localhost;User Id=postgres;Password=SatoriSama;Database=CalorieDB;");
+        optionsBuilder.UseNpgsql(connectionString);
+        //Console.WriteLine(connectionString);
+        //MessageBox.Show(connectionString);
 
         return new AppDbContext(optionsBuilder.Options);
     }

@@ -40,9 +40,9 @@
             tableLayoutPanel5 = new TableLayoutPanel();
             label9 = new Label();
             label10 = new Label();
-            dateTimePicker1 = new DateTimePicker();
-            dateTimePicker2 = new DateTimePicker();
-            button2 = new Button();
+            minDatePick = new DateTimePicker();
+            maxDatePick = new DateTimePicker();
+            refreshBtn = new Button();
             logFoodPage = new TabPage();
             tableLayoutPanel2 = new TableLayoutPanel();
             FoodsComboBox = new ComboBox();
@@ -50,7 +50,12 @@
             flowLayoutPanel1 = new FlowLayoutPanel();
             TextLabel2 = new Label();
             dateTimePickerLogFood = new DateTimePicker();
-            button1 = new Button();
+            label11 = new Label();
+            gramsUpDown = new NumericUpDown();
+            label12 = new Label();
+            portionUpDown = new NumericUpDown();
+            addFoodHistoryRecord = new Button();
+            addedLabel = new Label();
             historyPage = new TabPage();
             historyListBox = new ListBox();
             foodsPage = new TabPage();
@@ -82,6 +87,8 @@
             logFoodPage.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)gramsUpDown).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)portionUpDown).BeginInit();
             historyPage.SuspendLayout();
             foodsPage.SuspendLayout();
             addFoodPage.SuspendLayout();
@@ -127,7 +134,7 @@
             tableLayoutPanel1.Controls.Add(daysValue, 1, 4);
             tableLayoutPanel1.Controls.Add(caloriePerDayValue, 1, 6);
             tableLayoutPanel1.Controls.Add(tableLayoutPanel5, 1, 0);
-            tableLayoutPanel1.Controls.Add(button2, 1, 7);
+            tableLayoutPanel1.Controls.Add(refreshBtn, 1, 7);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(3, 3);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -227,8 +234,8 @@
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel5.Controls.Add(label9, 0, 0);
             tableLayoutPanel5.Controls.Add(label10, 1, 0);
-            tableLayoutPanel5.Controls.Add(dateTimePicker1, 0, 1);
-            tableLayoutPanel5.Controls.Add(dateTimePicker2, 1, 1);
+            tableLayoutPanel5.Controls.Add(minDatePick, 0, 1);
+            tableLayoutPanel5.Controls.Add(maxDatePick, 1, 1);
             tableLayoutPanel5.Location = new Point(160, 3);
             tableLayoutPanel5.Name = "tableLayoutPanel5";
             tableLayoutPanel5.RowCount = 2;
@@ -257,32 +264,32 @@
             label10.TabIndex = 1;
             label10.Text = "Data do";
             // 
-            // dateTimePicker1
+            // minDatePick
             // 
-            dateTimePicker1.Anchor = AnchorStyles.Top;
-            dateTimePicker1.Location = new Point(8, 37);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(215, 23);
-            dateTimePicker1.TabIndex = 2;
+            minDatePick.Anchor = AnchorStyles.Top;
+            minDatePick.Location = new Point(8, 37);
+            minDatePick.Name = "minDatePick";
+            minDatePick.Size = new Size(215, 23);
+            minDatePick.TabIndex = 2;
             // 
-            // dateTimePicker2
+            // maxDatePick
             // 
-            dateTimePicker2.Anchor = AnchorStyles.Top;
-            dateTimePicker2.Location = new Point(243, 37);
-            dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(211, 23);
-            dateTimePicker2.TabIndex = 3;
+            maxDatePick.Anchor = AnchorStyles.Top;
+            maxDatePick.Location = new Point(243, 37);
+            maxDatePick.Name = "maxDatePick";
+            maxDatePick.Size = new Size(211, 23);
+            maxDatePick.TabIndex = 3;
             // 
-            // button2
+            // refreshBtn
             // 
-            button2.Anchor = AnchorStyles.Top;
-            button2.Location = new Point(355, 345);
-            button2.Name = "button2";
-            button2.Size = new Size(75, 23);
-            button2.TabIndex = 6;
-            button2.Text = "Refresh";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            refreshBtn.Anchor = AnchorStyles.Top;
+            refreshBtn.Location = new Point(355, 345);
+            refreshBtn.Name = "refreshBtn";
+            refreshBtn.Size = new Size(75, 23);
+            refreshBtn.TabIndex = 6;
+            refreshBtn.Text = "Refresh";
+            refreshBtn.UseVisualStyleBackColor = true;
+            refreshBtn.Click += refreshBtn_click;
             // 
             // logFoodPage
             // 
@@ -304,7 +311,8 @@
             tableLayoutPanel2.Controls.Add(FoodsComboBox, 1, 1);
             tableLayoutPanel2.Controls.Add(TextLabel1, 1, 0);
             tableLayoutPanel2.Controls.Add(flowLayoutPanel1, 1, 2);
-            tableLayoutPanel2.Controls.Add(button1, 2, 1);
+            tableLayoutPanel2.Controls.Add(addFoodHistoryRecord, 2, 1);
+            tableLayoutPanel2.Controls.Add(addedLabel, 2, 0);
             tableLayoutPanel2.Dock = DockStyle.Fill;
             tableLayoutPanel2.Location = new Point(0, 0);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -340,6 +348,10 @@
             // 
             flowLayoutPanel1.Controls.Add(TextLabel2);
             flowLayoutPanel1.Controls.Add(dateTimePickerLogFood);
+            flowLayoutPanel1.Controls.Add(label11);
+            flowLayoutPanel1.Controls.Add(gramsUpDown);
+            flowLayoutPanel1.Controls.Add(label12);
+            flowLayoutPanel1.Controls.Add(portionUpDown);
             flowLayoutPanel1.Dock = DockStyle.Fill;
             flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
             flowLayoutPanel1.Location = new Point(82, 130);
@@ -365,15 +377,63 @@
             dateTimePickerLogFood.Size = new Size(200, 23);
             dateTimePickerLogFood.TabIndex = 3;
             // 
-            // button1
+            // label11
             // 
-            button1.Dock = DockStyle.Fill;
-            button1.Location = new Point(557, 101);
-            button1.Name = "button1";
-            button1.Size = new Size(152, 23);
-            button1.TabIndex = 4;
-            button1.Text = "Add";
-            button1.UseVisualStyleBackColor = true;
+            label11.AutoSize = true;
+            label11.Location = new Point(3, 54);
+            label11.Name = "label11";
+            label11.Size = new Size(114, 15);
+            label11.TabIndex = 6;
+            label11.Text = "Gramy (Opcjonalne)";
+            // 
+            // gramsUpDown
+            // 
+            gramsUpDown.DecimalPlaces = 2;
+            gramsUpDown.Location = new Point(3, 72);
+            gramsUpDown.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
+            gramsUpDown.Name = "gramsUpDown";
+            gramsUpDown.Size = new Size(120, 23);
+            gramsUpDown.TabIndex = 4;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(3, 98);
+            label12.Name = "label12";
+            label12.Size = new Size(109, 15);
+            label12.TabIndex = 7;
+            label12.Text = "Porcje(Opcjonalne)";
+            label12.Click += label12_Click;
+            // 
+            // portionUpDown
+            // 
+            portionUpDown.DecimalPlaces = 2;
+            portionUpDown.Location = new Point(3, 116);
+            portionUpDown.Name = "portionUpDown";
+            portionUpDown.Size = new Size(120, 23);
+            portionUpDown.TabIndex = 5;
+            // 
+            // addFoodHistoryRecord
+            // 
+            addFoodHistoryRecord.Dock = DockStyle.Fill;
+            addFoodHistoryRecord.Location = new Point(557, 101);
+            addFoodHistoryRecord.Name = "addFoodHistoryRecord";
+            addFoodHistoryRecord.Size = new Size(152, 23);
+            addFoodHistoryRecord.TabIndex = 4;
+            addFoodHistoryRecord.Text = "Add";
+            addFoodHistoryRecord.UseVisualStyleBackColor = true;
+            addFoodHistoryRecord.Click += addFoodHistoryRecord_Click;
+            // 
+            // addedLabel
+            // 
+            addedLabel.Anchor = AnchorStyles.Bottom;
+            addedLabel.AutoSize = true;
+            addedLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            addedLabel.ForeColor = Color.Lime;
+            addedLabel.Location = new Point(633, 77);
+            addedLabel.Name = "addedLabel";
+            addedLabel.Size = new Size(0, 21);
+            addedLabel.TabIndex = 11;
             // 
             // historyPage
             // 
@@ -654,6 +714,8 @@
             tableLayoutPanel2.PerformLayout();
             flowLayoutPanel1.ResumeLayout(false);
             flowLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)gramsUpDown).EndInit();
+            ((System.ComponentModel.ISupportInitialize)portionUpDown).EndInit();
             historyPage.ResumeLayout(false);
             foodsPage.ResumeLayout(false);
             addFoodPage.ResumeLayout(false);
@@ -683,7 +745,7 @@
         private Label TextLabel1;
         private Label TextLabel2;
         private DateTimePicker dateTimePickerLogFood;
-        private Button button1;
+        private Button addFoodHistoryRecord;
         private FlowLayoutPanel flowLayoutPanel1;
         private ComboBox FoodsComboBox;
         private ListBox historyListBox;
@@ -710,8 +772,13 @@
         private TableLayoutPanel tableLayoutPanel5;
         private Label label9;
         private Label label10;
-        private DateTimePicker dateTimePicker1;
-        private DateTimePicker dateTimePicker2;
-        private Button button2;
+        private DateTimePicker minDatePick;
+        private DateTimePicker maxDatePick;
+        private Button refreshBtn;
+        private Label label11;
+        private NumericUpDown gramsUpDown;
+        private Label label12;
+        private NumericUpDown portionUpDown;
+        private Label addedLabel;
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 public class FoodsService : IDisposable
 {
-    private readonly AppDbContext _db;
+    public readonly AppDbContext _db;
 
     public FoodsService(AppDbContext db)
     {

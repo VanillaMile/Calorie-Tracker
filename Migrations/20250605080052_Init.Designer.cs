@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Calorie_Tracker.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250604213129_Init")]
+    [Migration("20250605080052_Init")]
     partial class Init
     {
         /// <inheritdoc />
