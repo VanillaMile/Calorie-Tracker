@@ -85,18 +85,18 @@
             notesPage = new TabPage();
             tableLayoutPanel9 = new TableLayoutPanel();
             tableLayoutPanel14 = new TableLayoutPanel();
-            button8 = new Button();
-            button9 = new Button();
-            button14 = new Button();
-            button15 = new Button();
+            historyNoteNextBtn = new Button();
+            historyNoteBackBtn = new Button();
+            historyNoteEditBtn = new Button();
+            historyNoteDeleteBtn = new Button();
             tableLayoutPanel10 = new TableLayoutPanel();
             flowLayoutPanel3 = new FlowLayoutPanel();
-            dateTimePicker3 = new DateTimePicker();
+            historyNoteDateMax = new DateTimePicker();
             label15 = new Label();
             flowLayoutPanel5 = new FlowLayoutPanel();
             label16 = new Label();
-            dateTimePicker4 = new DateTimePicker();
-            listBox1 = new ListBox();
+            historyNoteDateMin = new DateTimePicker();
+            historyNoteListBox = new ListBox();
             addNote = new TabPage();
             tableLayoutPanel21 = new TableLayoutPanel();
             label29 = new Label();
@@ -170,17 +170,17 @@
             editNote = new TabPage();
             tableLayoutPanel19 = new TableLayoutPanel();
             label30 = new Label();
-            button2 = new Button();
+            editNoteBtn = new Button();
             tableLayoutPanel20 = new TableLayoutPanel();
             label32 = new Label();
             label34 = new Label();
-            dateTimePicker2 = new DateTimePicker();
+            editNoteDate = new DateTimePicker();
             label35 = new Label();
-            checkBox1 = new CheckBox();
+            editNoteCheckBox = new CheckBox();
             label31 = new Label();
-            textBox13 = new TextBox();
-            comboBox2 = new ComboBox();
-            label36 = new Label();
+            editNoteNoted = new TextBox();
+            editNoteCB = new ComboBox();
+            editNoteLBL = new Label();
             mainTabControl.SuspendLayout();
             statsPage.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
@@ -286,36 +286,36 @@
             // 
             caloriePerDayLabel.Anchor = AnchorStyles.None;
             caloriePerDayLabel.AutoSize = true;
-            caloriePerDayLabel.Font = new Font("Comic Sans MS", 21.75F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            caloriePerDayLabel.Font = new Font("Comic Sans MS", 18F, FontStyle.Italic, GraphicsUnit.Point, 0);
             caloriePerDayLabel.ForeColor = Color.Coral;
-            caloriePerDayLabel.Location = new Point(306, 258);
+            caloriePerDayLabel.Location = new Point(309, 256);
             caloriePerDayLabel.Name = "caloriePerDayLabel";
             caloriePerDayLabel.Padding = new Padding(0, 10, 0, 0);
-            caloriePerDayLabel.Size = new Size(173, 51);
+            caloriePerDayLabel.Size = new Size(166, 44);
             caloriePerDayLabel.TabIndex = 1;
-            caloriePerDayLabel.Text = "Calorie/day";
+            caloriePerDayLabel.Text = "Kalorie/dzień";
             // 
             // daysLabel
             // 
             daysLabel.Anchor = AnchorStyles.None;
             daysLabel.AutoSize = true;
             daysLabel.FlatStyle = FlatStyle.Popup;
-            daysLabel.Font = new Font("Comic Sans MS", 21.75F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            daysLabel.Font = new Font("Comic Sans MS", 18F, FontStyle.Italic, GraphicsUnit.Point, 0);
             daysLabel.ForeColor = Color.Coral;
-            daysLabel.Location = new Point(351, 174);
+            daysLabel.Location = new Point(366, 183);
             daysLabel.Name = "daysLabel";
             daysLabel.Padding = new Padding(0, 10, 0, 0);
-            daysLabel.Size = new Size(83, 51);
+            daysLabel.Size = new Size(52, 44);
             daysLabel.TabIndex = 0;
-            daysLabel.Text = "Days";
+            daysLabel.Text = "Dni";
             // 
             // totalCalorieConsumedValue
             // 
             totalCalorieConsumedValue.Anchor = AnchorStyles.None;
             totalCalorieConsumedValue.AutoSize = true;
             totalCalorieConsumedValue.Font = new Font("Comic Sans MS", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            totalCalorieConsumedValue.ForeColor = Color.Lime;
-            totalCalorieConsumedValue.Location = new Point(371, 125);
+            totalCalorieConsumedValue.ForeColor = Color.Chocolate;
+            totalCalorieConsumedValue.Location = new Point(371, 134);
             totalCalorieConsumedValue.Name = "totalCalorieConsumedValue";
             totalCalorieConsumedValue.Size = new Size(43, 49);
             totalCalorieConsumedValue.TabIndex = 2;
@@ -325,24 +325,24 @@
             // 
             totalCalorieConsumedLabel.Anchor = AnchorStyles.None;
             totalCalorieConsumedLabel.AutoSize = true;
-            totalCalorieConsumedLabel.Font = new Font("Comic Sans MS", 21.75F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            totalCalorieConsumedLabel.Font = new Font("Comic Sans MS", 20.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
             totalCalorieConsumedLabel.ForeColor = Color.Coral;
-            totalCalorieConsumedLabel.Location = new Point(226, 74);
+            totalCalorieConsumedLabel.Location = new Point(176, 86);
             totalCalorieConsumedLabel.Name = "totalCalorieConsumedLabel";
             totalCalorieConsumedLabel.Padding = new Padding(0, 10, 0, 0);
-            totalCalorieConsumedLabel.Size = new Size(333, 51);
+            totalCalorieConsumedLabel.Size = new Size(433, 48);
             totalCalorieConsumedLabel.TabIndex = 0;
-            totalCalorieConsumedLabel.Text = "Total Calorie Consumed";
+            totalCalorieConsumedLabel.Text = "Całkowita liczba spożytych Kalori";
             // 
             // daysValue
             // 
             daysValue.Anchor = AnchorStyles.None;
             daysValue.AutoSize = true;
-            daysValue.Font = new Font("Comic Sans MS", 18F);
+            daysValue.Font = new Font("Comic Sans MS", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             daysValue.ForeColor = Color.Chocolate;
-            daysValue.Location = new Point(377, 225);
+            daysValue.Location = new Point(379, 227);
             daysValue.Name = "daysValue";
-            daysValue.Size = new Size(30, 33);
+            daysValue.Size = new Size(26, 29);
             daysValue.TabIndex = 3;
             daysValue.Text = "0";
             // 
@@ -350,11 +350,11 @@
             // 
             caloriePerDayValue.Anchor = AnchorStyles.None;
             caloriePerDayValue.AutoSize = true;
-            caloriePerDayValue.Font = new Font("Comic Sans MS", 18F);
+            caloriePerDayValue.Font = new Font("Comic Sans MS", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             caloriePerDayValue.ForeColor = Color.Chocolate;
-            caloriePerDayValue.Location = new Point(377, 309);
+            caloriePerDayValue.Location = new Point(379, 300);
             caloriePerDayValue.Name = "caloriePerDayValue";
-            caloriePerDayValue.Size = new Size(30, 33);
+            caloriePerDayValue.Size = new Size(26, 29);
             caloriePerDayValue.TabIndex = 4;
             caloriePerDayValue.Text = "0";
             // 
@@ -368,7 +368,7 @@
             tableLayoutPanel5.Controls.Add(label10, 1, 0);
             tableLayoutPanel5.Controls.Add(minDatePick, 0, 1);
             tableLayoutPanel5.Controls.Add(maxDatePick, 1, 1);
-            tableLayoutPanel5.Location = new Point(160, 3);
+            tableLayoutPanel5.Location = new Point(160, 15);
             tableLayoutPanel5.Name = "tableLayoutPanel5";
             tableLayoutPanel5.RowCount = 2;
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
@@ -415,11 +415,11 @@
             // refreshBtn
             // 
             refreshBtn.Anchor = AnchorStyles.Top;
-            refreshBtn.Location = new Point(355, 345);
+            refreshBtn.Location = new Point(355, 332);
             refreshBtn.Name = "refreshBtn";
             refreshBtn.Size = new Size(75, 23);
             refreshBtn.TabIndex = 6;
-            refreshBtn.Text = "Refresh";
+            refreshBtn.Text = "Odśwież";
             refreshBtn.UseVisualStyleBackColor = true;
             refreshBtn.Click += refreshBtn_click;
             // 
@@ -894,7 +894,7 @@
             tableLayoutPanel9.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel9.Controls.Add(tableLayoutPanel14, 0, 2);
             tableLayoutPanel9.Controls.Add(tableLayoutPanel10, 0, 0);
-            tableLayoutPanel9.Controls.Add(listBox1, 0, 1);
+            tableLayoutPanel9.Controls.Add(historyNoteListBox, 0, 1);
             tableLayoutPanel9.Dock = DockStyle.Fill;
             tableLayoutPanel9.Location = new Point(0, 0);
             tableLayoutPanel9.Name = "tableLayoutPanel9";
@@ -914,10 +914,10 @@
             tableLayoutPanel14.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 15F));
             tableLayoutPanel14.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
             tableLayoutPanel14.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
-            tableLayoutPanel14.Controls.Add(button8, 3, 0);
-            tableLayoutPanel14.Controls.Add(button9, 2, 0);
-            tableLayoutPanel14.Controls.Add(button14, 5, 0);
-            tableLayoutPanel14.Controls.Add(button15, 0, 0);
+            tableLayoutPanel14.Controls.Add(historyNoteNextBtn, 3, 0);
+            tableLayoutPanel14.Controls.Add(historyNoteBackBtn, 2, 0);
+            tableLayoutPanel14.Controls.Add(historyNoteEditBtn, 5, 0);
+            tableLayoutPanel14.Controls.Add(historyNoteDeleteBtn, 0, 0);
             tableLayoutPanel14.Dock = DockStyle.Fill;
             tableLayoutPanel14.Location = new Point(3, 382);
             tableLayoutPanel14.Name = "tableLayoutPanel14";
@@ -926,45 +926,49 @@
             tableLayoutPanel14.Size = new Size(786, 37);
             tableLayoutPanel14.TabIndex = 9;
             // 
-            // button8
+            // historyNoteNextBtn
             // 
-            button8.Location = new Point(394, 3);
-            button8.Name = "button8";
-            button8.Size = new Size(111, 31);
-            button8.TabIndex = 1;
-            button8.Text = "Następna";
-            button8.UseVisualStyleBackColor = true;
+            historyNoteNextBtn.Location = new Point(394, 3);
+            historyNoteNextBtn.Name = "historyNoteNextBtn";
+            historyNoteNextBtn.Size = new Size(111, 31);
+            historyNoteNextBtn.TabIndex = 1;
+            historyNoteNextBtn.Text = "Następna";
+            historyNoteNextBtn.UseVisualStyleBackColor = true;
+            historyNoteNextBtn.Click += historyNoteNextBtn_Click;
             // 
-            // button9
+            // historyNoteBackBtn
             // 
-            button9.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            button9.Location = new Point(277, 3);
-            button9.Name = "button9";
-            button9.Size = new Size(111, 31);
-            button9.TabIndex = 0;
-            button9.Text = "Poprzednia";
-            button9.UseVisualStyleBackColor = true;
+            historyNoteBackBtn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            historyNoteBackBtn.Location = new Point(277, 3);
+            historyNoteBackBtn.Name = "historyNoteBackBtn";
+            historyNoteBackBtn.Size = new Size(111, 31);
+            historyNoteBackBtn.TabIndex = 0;
+            historyNoteBackBtn.Text = "Poprzednia";
+            historyNoteBackBtn.UseVisualStyleBackColor = true;
+            historyNoteBackBtn.Click += historyNoteBackBtn_Click;
             // 
-            // button14
+            // historyNoteEditBtn
             // 
-            button14.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            button14.Location = new Point(707, 3);
-            button14.Name = "button14";
-            button14.Size = new Size(76, 31);
-            button14.TabIndex = 2;
-            button14.Text = "Edytuj";
-            button14.UseVisualStyleBackColor = true;
+            historyNoteEditBtn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            historyNoteEditBtn.Location = new Point(707, 3);
+            historyNoteEditBtn.Name = "historyNoteEditBtn";
+            historyNoteEditBtn.Size = new Size(76, 31);
+            historyNoteEditBtn.TabIndex = 2;
+            historyNoteEditBtn.Text = "Edytuj";
+            historyNoteEditBtn.UseVisualStyleBackColor = true;
+            historyNoteEditBtn.Click += historyNoteEditBtn_Click;
             // 
-            // button15
+            // historyNoteDeleteBtn
             // 
-            button15.BackColor = Color.Transparent;
-            button15.ForeColor = Color.Firebrick;
-            button15.Location = new Point(3, 3);
-            button15.Name = "button15";
-            button15.Size = new Size(72, 31);
-            button15.TabIndex = 3;
-            button15.Text = "Usuń";
-            button15.UseVisualStyleBackColor = false;
+            historyNoteDeleteBtn.BackColor = Color.Transparent;
+            historyNoteDeleteBtn.ForeColor = Color.Firebrick;
+            historyNoteDeleteBtn.Location = new Point(3, 3);
+            historyNoteDeleteBtn.Name = "historyNoteDeleteBtn";
+            historyNoteDeleteBtn.Size = new Size(72, 31);
+            historyNoteDeleteBtn.TabIndex = 3;
+            historyNoteDeleteBtn.Text = "Usuń";
+            historyNoteDeleteBtn.UseVisualStyleBackColor = false;
+            historyNoteDeleteBtn.Click += historyNoteDeleteBtn_Click;
             // 
             // tableLayoutPanel10
             // 
@@ -984,7 +988,7 @@
             // 
             // flowLayoutPanel3
             // 
-            flowLayoutPanel3.Controls.Add(dateTimePicker3);
+            flowLayoutPanel3.Controls.Add(historyNoteDateMax);
             flowLayoutPanel3.Controls.Add(label15);
             flowLayoutPanel3.Dock = DockStyle.Fill;
             flowLayoutPanel3.FlowDirection = FlowDirection.RightToLeft;
@@ -993,12 +997,13 @@
             flowLayoutPanel3.Size = new Size(387, 30);
             flowLayoutPanel3.TabIndex = 0;
             // 
-            // dateTimePicker3
+            // historyNoteDateMax
             // 
-            dateTimePicker3.Location = new Point(184, 3);
-            dateTimePicker3.Name = "dateTimePicker3";
-            dateTimePicker3.Size = new Size(200, 23);
-            dateTimePicker3.TabIndex = 0;
+            historyNoteDateMax.Location = new Point(184, 3);
+            historyNoteDateMax.Name = "historyNoteDateMax";
+            historyNoteDateMax.Size = new Size(200, 23);
+            historyNoteDateMax.TabIndex = 0;
+            historyNoteDateMax.ValueChanged += historyNoteDateMax_ValueChanged;
             // 
             // label15
             // 
@@ -1013,7 +1018,7 @@
             // flowLayoutPanel5
             // 
             flowLayoutPanel5.Controls.Add(label16);
-            flowLayoutPanel5.Controls.Add(dateTimePicker4);
+            flowLayoutPanel5.Controls.Add(historyNoteDateMin);
             flowLayoutPanel5.Dock = DockStyle.Fill;
             flowLayoutPanel5.Location = new Point(3, 3);
             flowLayoutPanel5.Name = "flowLayoutPanel5";
@@ -1030,21 +1035,22 @@
             label16.TabIndex = 1;
             label16.Text = "Od";
             // 
-            // dateTimePicker4
+            // historyNoteDateMin
             // 
-            dateTimePicker4.Location = new Point(46, 3);
-            dateTimePicker4.Name = "dateTimePicker4";
-            dateTimePicker4.Size = new Size(200, 23);
-            dateTimePicker4.TabIndex = 0;
+            historyNoteDateMin.Location = new Point(46, 3);
+            historyNoteDateMin.Name = "historyNoteDateMin";
+            historyNoteDateMin.Size = new Size(200, 23);
+            historyNoteDateMin.TabIndex = 0;
+            historyNoteDateMin.ValueChanged += historyNoteDateMin_ValueChanged;
             // 
-            // listBox1
+            // historyNoteListBox
             // 
-            listBox1.Dock = DockStyle.Fill;
-            listBox1.FormattingEnabled = true;
-            listBox1.Location = new Point(3, 45);
-            listBox1.Name = "listBox1";
-            listBox1.Size = new Size(786, 331);
-            listBox1.TabIndex = 10;
+            historyNoteListBox.Dock = DockStyle.Fill;
+            historyNoteListBox.FormattingEnabled = true;
+            historyNoteListBox.Location = new Point(3, 45);
+            historyNoteListBox.Name = "historyNoteListBox";
+            historyNoteListBox.Size = new Size(786, 331);
+            historyNoteListBox.TabIndex = 10;
             // 
             // addNote
             // 
@@ -1422,11 +1428,10 @@
             addFoodLBL.AutoSize = true;
             addFoodLBL.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             addFoodLBL.ForeColor = Color.Lime;
-            addFoodLBL.Location = new Point(323, 305);
+            addFoodLBL.Location = new Point(395, 305);
             addFoodLBL.Name = "addFoodLBL";
-            addFoodLBL.Size = new Size(144, 21);
+            addFoodLBL.Size = new Size(0, 21);
             addFoodLBL.TabIndex = 7;
-            addFoodLBL.Text = "TEMP: Informacja";
             // 
             // editHistory
             // 
@@ -1435,7 +1440,7 @@
             editHistory.Name = "editHistory";
             editHistory.Size = new Size(792, 422);
             editHistory.TabIndex = 6;
-            editHistory.Text = "Edit Historię";
+            editHistory.Text = "Edytuj Historię";
             editHistory.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel15
@@ -1520,6 +1525,7 @@
             editHistoryRecordId.Name = "editHistoryRecordId";
             editHistoryRecordId.Size = new Size(530, 23);
             editHistoryRecordId.TabIndex = 12;
+            editHistoryRecordId.Visible = false;
             // 
             // label18
             // 
@@ -1530,6 +1536,7 @@
             label18.Size = new Size(70, 25);
             label18.TabIndex = 11;
             label18.Text = "Rekord";
+            label18.Visible = false;
             // 
             // label21
             // 
@@ -1833,6 +1840,7 @@
             // 
             editFoodLBL.Anchor = AnchorStyles.None;
             editFoodLBL.AutoSize = true;
+            editFoodLBL.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             editFoodLBL.Location = new Point(395, 308);
             editFoodLBL.Name = "editFoodLBL";
             editFoodLBL.Size = new Size(0, 15);
@@ -1855,9 +1863,9 @@
             tableLayoutPanel19.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 80F));
             tableLayoutPanel19.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
             tableLayoutPanel19.Controls.Add(label30, 1, 0);
-            tableLayoutPanel19.Controls.Add(button2, 1, 3);
+            tableLayoutPanel19.Controls.Add(editNoteBtn, 1, 3);
             tableLayoutPanel19.Controls.Add(tableLayoutPanel20, 1, 1);
-            tableLayoutPanel19.Controls.Add(label36, 1, 2);
+            tableLayoutPanel19.Controls.Add(editNoteLBL, 1, 2);
             tableLayoutPanel19.Dock = DockStyle.Fill;
             tableLayoutPanel19.Location = new Point(0, 0);
             tableLayoutPanel19.Name = "tableLayoutPanel19";
@@ -1880,17 +1888,18 @@
             label30.TabIndex = 4;
             label30.Text = "Edytuj rekord";
             // 
-            // button2
+            // editNoteBtn
             // 
-            button2.Anchor = AnchorStyles.Top;
-            button2.Enabled = false;
-            button2.Font = new Font("Segoe UI", 21.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button2.Location = new Point(101, 340);
-            button2.Name = "button2";
-            button2.Size = new Size(589, 63);
-            button2.TabIndex = 5;
-            button2.Text = "Brak rekordu do edycji";
-            button2.UseVisualStyleBackColor = true;
+            editNoteBtn.Anchor = AnchorStyles.Top;
+            editNoteBtn.Enabled = false;
+            editNoteBtn.Font = new Font("Segoe UI", 21.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            editNoteBtn.Location = new Point(101, 340);
+            editNoteBtn.Name = "editNoteBtn";
+            editNoteBtn.Size = new Size(589, 63);
+            editNoteBtn.TabIndex = 5;
+            editNoteBtn.Text = "Brak rekordu do edycji";
+            editNoteBtn.UseVisualStyleBackColor = true;
+            editNoteBtn.Click += editNoteBtn_Click;
             // 
             // tableLayoutPanel20
             // 
@@ -1899,12 +1908,12 @@
             tableLayoutPanel20.ColumnStyles.Add(new ColumnStyle());
             tableLayoutPanel20.Controls.Add(label32, 0, 2);
             tableLayoutPanel20.Controls.Add(label34, 1, 1);
-            tableLayoutPanel20.Controls.Add(dateTimePicker2, 0, 0);
+            tableLayoutPanel20.Controls.Add(editNoteDate, 0, 0);
             tableLayoutPanel20.Controls.Add(label35, 1, 0);
-            tableLayoutPanel20.Controls.Add(checkBox1, 0, 3);
+            tableLayoutPanel20.Controls.Add(editNoteCheckBox, 0, 3);
             tableLayoutPanel20.Controls.Add(label31, 1, 6);
-            tableLayoutPanel20.Controls.Add(textBox13, 0, 1);
-            tableLayoutPanel20.Controls.Add(comboBox2, 0, 6);
+            tableLayoutPanel20.Controls.Add(editNoteNoted, 0, 1);
+            tableLayoutPanel20.Controls.Add(editNoteCB, 0, 6);
             tableLayoutPanel20.Dock = DockStyle.Fill;
             tableLayoutPanel20.Location = new Point(82, 45);
             tableLayoutPanel20.Name = "tableLayoutPanel20";
@@ -1938,13 +1947,13 @@
             label34.TabIndex = 3;
             label34.Text = "Notatka";
             // 
-            // dateTimePicker2
+            // editNoteDate
             // 
-            dateTimePicker2.Anchor = AnchorStyles.Right;
-            dateTimePicker2.Location = new Point(333, 3);
-            dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(200, 23);
-            dateTimePicker2.TabIndex = 8;
+            editNoteDate.Anchor = AnchorStyles.Right;
+            editNoteDate.Location = new Point(333, 3);
+            editNoteDate.Name = "editNoteDate";
+            editNoteDate.Size = new Size(200, 23);
+            editNoteDate.TabIndex = 8;
             // 
             // label35
             // 
@@ -1956,15 +1965,15 @@
             label35.TabIndex = 0;
             label35.Text = "Data";
             // 
-            // checkBox1
+            // editNoteCheckBox
             // 
-            checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(3, 86);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(122, 19);
-            checkBox1.TabIndex = 11;
-            checkBox1.Text = "Dodaj z jedzeniem";
-            checkBox1.UseVisualStyleBackColor = true;
+            editNoteCheckBox.AutoSize = true;
+            editNoteCheckBox.Location = new Point(3, 86);
+            editNoteCheckBox.Name = "editNoteCheckBox";
+            editNoteCheckBox.Size = new Size(122, 19);
+            editNoteCheckBox.TabIndex = 11;
+            editNoteCheckBox.Text = "Dodaj z jedzeniem";
+            editNoteCheckBox.UseVisualStyleBackColor = true;
             // 
             // label31
             // 
@@ -1976,31 +1985,34 @@
             label31.TabIndex = 10;
             label31.Text = "Jedzenie";
             // 
-            // textBox13
+            // editNoteNoted
             // 
-            textBox13.Dock = DockStyle.Fill;
-            textBox13.Location = new Point(3, 32);
-            textBox13.Name = "textBox13";
-            textBox13.Size = new Size(530, 23);
-            textBox13.TabIndex = 2;
+            editNoteNoted.Dock = DockStyle.Fill;
+            editNoteNoted.Location = new Point(3, 32);
+            editNoteNoted.Name = "editNoteNoted";
+            editNoteNoted.Size = new Size(530, 23);
+            editNoteNoted.TabIndex = 2;
+            editNoteNoted.TextChanged += editNoteNoted_TextChanged;
             // 
-            // comboBox2
+            // editNoteCB
             // 
-            comboBox2.Dock = DockStyle.Fill;
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(3, 111);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(530, 23);
-            comboBox2.TabIndex = 9;
+            editNoteCB.Dock = DockStyle.Fill;
+            editNoteCB.FormattingEnabled = true;
+            editNoteCB.Location = new Point(3, 111);
+            editNoteCB.Name = "editNoteCB";
+            editNoteCB.Size = new Size(530, 23);
+            editNoteCB.TabIndex = 9;
             // 
-            // label36
+            // editNoteLBL
             // 
-            label36.Anchor = AnchorStyles.None;
-            label36.AutoSize = true;
-            label36.Location = new Point(395, 308);
-            label36.Name = "label36";
-            label36.Size = new Size(0, 15);
-            label36.TabIndex = 7;
+            editNoteLBL.Anchor = AnchorStyles.None;
+            editNoteLBL.AutoSize = true;
+            editNoteLBL.Font = new Font("Segoe UI", 9F);
+            editNoteLBL.ForeColor = SystemColors.ControlText;
+            editNoteLBL.Location = new Point(395, 308);
+            editNoteLBL.Name = "editNoteLBL";
+            editNoteLBL.Size = new Size(0, 15);
+            editNoteLBL.TabIndex = 7;
             // 
             // MainView
             // 
@@ -2140,19 +2152,19 @@
         private TableLayoutPanel tableLayoutPanel9;
         private TableLayoutPanel tableLayoutPanel10;
         private FlowLayoutPanel flowLayoutPanel3;
-        private DateTimePicker dateTimePicker3;
+        private DateTimePicker historyNoteDateMax;
         private Label label15;
         private FlowLayoutPanel flowLayoutPanel5;
         private Label label16;
-        private DateTimePicker dateTimePicker4;
+        private DateTimePicker historyNoteDateMin;
         private Button historyEdit;
         private Button historyDelete;
         private TableLayoutPanel tableLayoutPanel14;
-        private Button button8;
-        private Button button9;
-        private Button button14;
-        private Button button15;
-        private ListBox listBox1;
+        private Button historyNoteNextBtn;
+        private Button historyNoteBackBtn;
+        private Button historyNoteEditBtn;
+        private Button historyNoteDeleteBtn;
+        private ListBox historyNoteListBox;
         private TabPage editHistory;
         private TableLayoutPanel tableLayoutPanel11;
         private ListBox foodListBox;
@@ -2187,14 +2199,14 @@
         private TabPage editNote;
         private TableLayoutPanel tableLayoutPanel19;
         private Label label30;
-        private Button button2;
+        private Button editNoteBtn;
         private TableLayoutPanel tableLayoutPanel20;
         private Label label34;
-        private TextBox textBox13;
-        private DateTimePicker dateTimePicker2;
-        private ComboBox comboBox2;
+        private TextBox editNoteNoted;
+        private DateTimePicker editNoteDate;
+        private ComboBox editNoteCB;
         private Label label35;
-        private Label label36;
+        private Label editNoteLBL;
         private TableLayoutPanel tableLayoutPanel18;
         private Label label38;
         private TextBox editFoodGramsInPortion;
@@ -2211,7 +2223,7 @@
         private Label label28;
         private Label label37;
         private Label label31;
-        private CheckBox checkBox1;
+        private CheckBox editNoteCheckBox;
         private Label label32;
         private TabPage addNote;
         private TableLayoutPanel tableLayoutPanel21;

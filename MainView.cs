@@ -29,6 +29,7 @@ namespace Calorie_Tracker
             setHistoryList();
             setFoodList();
             setUpAddNote();
+            setUpNoteHistory();
         }
 
         private async void setHistoryList()
@@ -475,7 +476,8 @@ namespace Calorie_Tracker
             setHistoryList();
             setUpDate();
             await Task.Delay(2000);
-            editHistoryLabel.Text = "Zaktualizowano";
+            mainTabControl.SelectTab(historyPage);
+            editHistoryLabel.Text = "";
         }
 
         private void historyMinDate_ValueChanged(object sender, EventArgs e)
@@ -703,12 +705,13 @@ namespace Calorie_Tracker
 
             editFoodLBL.Text = "Zaktualizowano";
             editFoodUpdateBTN.Enabled = false;
+            editFoodUpdateBTN.Text = "Brak rekordu do edycji";
             setFoodList();
             setFoodCB();
             setUpAddNote();
             await Task.Delay(2000);
+            mainTabControl.SelectTab(foodsPage);
             toEditFood = null;
-            editFoodUpdateBTN.Text = "Brak rekordu do edycji";
             editFoodLBL.Text = "";
         }
 
@@ -810,6 +813,7 @@ namespace Calorie_Tracker
 
             addNoteLBL.Text = "Dodano!";
             addNoteTextBox.Text = "";
+            setUpNoteHistory();
             await Task.Delay(2000);
             addNoteLBL.Text = "";
         }
@@ -894,6 +898,248 @@ namespace Calorie_Tracker
             setUpAddNote();
             await Task.Delay(2000);
             addFoodLBL.Text = "";
+        }
+
+        private List<Note> filteredNotes;
+        private const int notePageSize = 20;
+        private int notesCurPage;
+        private Note toEditNote = null;
+        private async void setUpNoteHistory()
+        {
+            var minDate = historyNoteDateMin.Value.Date;
+            var maxDate = historyNoteDateMax.Value.Date;
+            int page = notesCurPage;
+
+            using (var noteService = getNoteService())
+            {
+                var allNotes = await noteService.GetNotesFilteredAsync(minDate, maxDate);
+                filteredNotes = allNotes
+                    .OrderByDescending(n => n.DateTime)
+                    .Skip(page * notePageSize)
+                    .Take(notePageSize)
+                    .ToList();
+
+                // FIXME: Fix n.Food being null despite having FoodId
+                var notesWithNames = filteredNotes
+                    .Select(n => (n.Food != null)
+                        ? $"{n.Noted} | {n.Food.Name}"
+                        : n.Noted)
+                    .ToArray();
+
+                if (notesWithNames.Any())
+                {
+                    historyNoteListBox.DataSource = notesWithNames;
+                }
+                else
+                {
+                    if (notesCurPage != 0)
+                    {
+                        notesCurPage--;
+                        setUpNoteHistory();
+                        return;
+                    }
+                    historyNoteListBox.DataSource = null;
+                }
+            }
+        }
+
+        private async void historyNoteDeleteBtn_Click(object sender, EventArgs e)
+        {
+            int selectedIndex = historyNoteListBox.SelectedIndex;
+            if (selectedIndex < 0 || filteredNotes == null || selectedIndex >= filteredNotes.Count)
+            {
+                MessageBox.Show("Wybierz notatkę do usunięcia.");
+                return;
+            }
+
+            var noteToDelete = filteredNotes[selectedIndex];
+
+            var confirmResult = MessageBox.Show(
+                $"Czy chcesz usunąć tę notatkę?",
+                "Confirm Delete",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (confirmResult == DialogResult.Yes)
+            {
+                using (var noteService = getNoteService())
+                {
+                    await noteService.DeleteNoteAsync(noteToDelete.Id);
+                }
+                setUpNoteHistory();
+                toEditNote = null;
+                editNoteBtn.Enabled = true;
+                editNoteBtn.Text = "Edytuj";
+            }
+        }
+
+        private void historyNoteBackBtn_Click(object sender, EventArgs e)
+        {
+            if (notesCurPage > 0)
+            {
+                notesCurPage--;
+                setUpNoteHistory();
+            }
+        }
+
+        private void historyNoteNextBtn_Click(object sender, EventArgs e)
+        {
+            notesCurPage++;
+            setUpNoteHistory();
+        }
+
+        private void historyNoteDateMin_ValueChanged(object sender, EventArgs e)
+        {
+            setUpNoteHistory();
+        }
+
+        private void historyNoteDateMax_ValueChanged(object sender, EventArgs e)
+        {
+            setUpNoteHistory();
+        }
+
+        private async void historyNoteEditBtn_Click(object sender, EventArgs e)
+        {
+            int selectedIndex = historyNoteListBox.SelectedIndex;
+            if (selectedIndex < 0 || filteredNotes == null || selectedIndex >= filteredNotes.Count)
+            {
+                MessageBox.Show("Wybierz notatkę do edycji.");
+                return;
+            }
+
+            var noteToEdit = filteredNotes[selectedIndex];
+
+
+            editNoteDate.Value = noteToEdit.DateTime.Date;
+            editNoteNoted.Text = noteToEdit.Noted;
+
+            using (var foodService = getFoodService())
+            {
+                var foods = await foodService.GetAllFoodsAsync();
+                editNoteCB.DataSource = foods;
+                editNoteCB.DisplayMember = "Name";
+                editNoteCB.ValueMember = "Id";
+
+            }
+
+            if (noteToEdit.FoodId.HasValue)
+            {
+                editNoteCheckBox.Checked = true;
+                using (var foodService = getFoodService())
+                {
+                    var foods = await foodService.GetAllFoodsAsync();
+                    editNoteCB.SelectedValue = noteToEdit.FoodId.Value;
+                }
+            }
+            else
+            {
+                editNoteCheckBox.Checked = false;
+                editNoteCB.SelectedIndex = -1;
+            }
+
+            toEditNote = noteToEdit;
+
+            mainTabControl.SelectTab(editNote);
+            editNoteBtn.Enabled = true;
+            editNoteBtn.Text = "Edytuj";
+        }
+
+        private async void editNoteBtn_Click(object sender, EventArgs e)
+        {
+            if (toEditNote == null)
+            {
+                MessageBox.Show("No note selected for editing.");
+                return;
+            }
+
+            string noteText = editNoteNoted.Text?.Trim();
+            if (string.IsNullOrWhiteSpace(noteText))
+            {
+                MessageBox.Show("Note text is required.");
+                return;
+            }
+
+            DateTime noteDate = editNoteDate.Value.Date;
+            int? foodId = null;
+
+            if (editNoteCheckBox.Checked)
+            {
+                if (editNoteCB.SelectedValue == null || !int.TryParse(editNoteCB.SelectedValue.ToString(), out int parsedFoodId))
+                {
+                    MessageBox.Show("Select a valid food item.");
+                    return;
+                }
+                foodId = parsedFoodId;
+            }
+
+            // Update note
+            toEditNote.DateTime = noteDate;
+            toEditNote.Noted = noteText;
+            toEditNote.FoodId = foodId;
+
+            using (var noteService = getNoteService())
+            {
+                await noteService.UpdateNoteAsync(toEditNote);
+            }
+
+            editNoteLBL.Text = "Zaktualizowano";
+            editNoteBtn.Enabled = false;
+            editNoteBtn.Text = "Brak rekordu do edycji";
+            setUpNoteHistory();
+            await Task.Delay(2000);
+            mainTabControl.SelectTab(notesPage);
+            editNoteLBL.Text = "";
+            toEditNote = null;
+        }
+
+        private void editNoteNoted_TextChanged(object sender, EventArgs e)
+        {
+            string input = editNoteNoted.Text;
+            if (string.IsNullOrWhiteSpace(input) || editNoteCB.DataSource == null)
+                return;
+
+            var foods = editNoteCB.DataSource as IEnumerable<Food>;
+            if (foods == null)
+                return;
+
+            var words = input.Split(new[] { ' ', ',', '.', '!', '?', ';', ':', '-', '_', '/', '\\', '\'', '\"', '(', ')', '[', ']', '{', '}' }, StringSplitOptions.RemoveEmptyEntries);
+
+            var match = foods.FirstOrDefault(f =>
+                !string.IsNullOrWhiteSpace(f.Name) &&
+                words.Any(word => string.Equals(word, f.Name, StringComparison.OrdinalIgnoreCase))
+            );
+
+            if (match != null)
+            {
+                editNoteCB.SelectedValue = match.Id;
+                return;
+            }
+
+            match = foods.FirstOrDefault(f =>
+                !string.IsNullOrWhiteSpace(f.Name) &&
+                words.Any(word =>
+                    string.Equals(word, f.Name.Split(' ', StringSplitOptions.RemoveEmptyEntries).FirstOrDefault() ?? "", StringComparison.OrdinalIgnoreCase))
+            );
+
+            if (match != null)
+            {
+                editNoteCB.SelectedValue = match.Id;
+                return;
+            }
+
+            try
+            {
+                var regex = new System.Text.RegularExpressions.Regex(input, System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                match = foods.FirstOrDefault(f => regex.IsMatch(f.Name));
+                if (match != null)
+                {
+                    editNoteCB.SelectedValue = match.Id;
+                }
+            }
+            catch (ArgumentException)
+            {
+                // Invalid regex pattern, ignore
+            }
         }
     }
 }
