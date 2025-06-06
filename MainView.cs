@@ -919,26 +919,50 @@ namespace Calorie_Tracker
                     .Take(notePageSize)
                     .ToList();
 
-                // FIXME: Fix n.Food being null despite having FoodId
-                var notesWithNames = filteredNotes
-                    .Select(n => (n.Food != null)
-                        ? $"{n.Noted} | {n.Food.Name}"
-                        : n.Noted)
-                    .ToArray();
+                // TEMP FIX =========================================
+                Dictionary<int, string> foodsDict = new Dictionary<int, string>();
 
-                if (notesWithNames.Any())
+                using (var foodService = getFoodService())
                 {
-                    historyNoteListBox.DataSource = notesWithNames;
+                    var foods = await foodService.GetAllFoodsAsync();
+                    foodsDict = foods.ToDictionary(f => f.Id, f => ($"{f.Name} - {f.Calorie:F0} kcal/100g"));
                 }
-                else
+
+                foreach (var food in filteredNotes)
                 {
-                    if (notesCurPage != 0)
+                    // Build an array of strings: "Noted | FoodName" (if FoodId exists), else just "Noted"
+                    var displayArray = filteredNotes
+                        .Select(n =>
+                        {
+                            if (n.FoodId.HasValue && foodsDict.TryGetValue(n.FoodId.Value, out var foodName))
+                                return $"{n.Noted} | {foodName}";
+                            else
+                                return n.Noted;
+                        })
+                        .ToArray();
+                    // ==================================================
+
+                    // FIXME: Fix n.Food being null despite having FoodId
+                    var notesWithNames = filteredNotes
+                        .Select(n => (n.Food != null)
+                            ? $"{n.Noted} | {n.Food.Name}"
+                            : n.Noted)
+                        .ToArray();
+
+                    if (notesWithNames.Any())
                     {
-                        notesCurPage--;
-                        setUpNoteHistory();
-                        return;
+                        historyNoteListBox.DataSource = displayArray;
                     }
-                    historyNoteListBox.DataSource = null;
+                    else
+                    {
+                        if (notesCurPage != 0)
+                        {
+                            notesCurPage--;
+                            setUpNoteHistory();
+                            return;
+                        }
+                        historyNoteListBox.DataSource = null;
+                    }
                 }
             }
         }
