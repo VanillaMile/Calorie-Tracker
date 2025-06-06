@@ -74,6 +74,14 @@ public class NoteService : IDisposable
             await _db.SaveChangesAsync();
         }
     }
+
+    public async Task<List<Note>> GetNotesFilteredAsync(DateTime minDate, DateTime maxDate)
+    {
+        return await _db.Notes
+            .Where(u => u.DateTime >= minDate)
+            .Where(u => u.DateTime <= maxDate)
+            .ToListAsync();
+    }
     public void Dispose()
     {
         _db?.Dispose();

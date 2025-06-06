@@ -34,15 +34,6 @@ public class HistoryService : IDisposable
         return await _db.History.FindAsync(id);
     }
 
-    // READ CHUNKS
-    public async Task<List<HistoryRecord>> GetRecordsPagedAsync(int pageNumber, int pageSize)
-    {
-        return await _db.History
-            .Skip((pageNumber - 1) * pageSize)
-            .Take(pageSize)
-            .ToListAsync();
-    }
-
     // FILTERING
     public async Task<List<HistoryRecord>> GetRecordsFilteredAsync(DateTime minDate, DateTime maxDate)
     {
