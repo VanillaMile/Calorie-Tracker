@@ -27,6 +27,8 @@ namespace Calorie_Tracker
             setUpDate();
             setFoodCB();
             setHistoryList();
+            setFoodList();
+            setUpAddNote();
         }
 
         private async void setHistoryList()
@@ -142,6 +144,13 @@ namespace Calorie_Tracker
             var dbContext = _dbContextFactory.CreateDbContext(Array.Empty<string>()); // Use Array.Empty<string>() to avoid unnecessary zero-length array allocations  
             HistoryService _historyService = new HistoryService(dbContext);
             return _historyService;
+        }
+
+        private NoteService getNoteService()
+        {
+            var dbContext = _dbContextFactory.CreateDbContext(Array.Empty<string>()); // Use Array.Empty<string>() to avoid unnecessary zero-length array allocations  
+            NoteService _noteService = new NoteService(dbContext);
+            return _noteService;
         }
 
         private async void refreshBtn_click(object sender, EventArgs e)
@@ -333,11 +342,6 @@ namespace Calorie_Tracker
             mainTabControl.SelectTab(editHistory);
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private async void setEditHistory()
         {
             if (hisRecord != null)
@@ -482,6 +486,414 @@ namespace Calorie_Tracker
         private void historyMaxDate_ValueChanged(object sender, EventArgs e)
         {
             setHistoryList();
+        }
+
+        private List<Food> filteredFoods;
+        private const int foodPageSize = 20;
+        private int foodsCurPage;
+        private string searchPhrase;
+        private Food toEditFood = null;
+        async void setFoodList()
+        {
+            using (var _foodService = getFoodService())
+            {
+                var foods = await _foodService.GetAllFoodsAsync();
+                if (string.IsNullOrEmpty(searchPhrase))
+                {
+                    filteredFoods = foods
+                        .Skip(foodsCurPage * foodPageSize)
+                        .Take(foodPageSize)
+                        .ToList();
+                }
+                else
+                {
+                    filteredFoods = foods
+                        .Where(f => f.Name.Contains(searchPhrase, StringComparison.OrdinalIgnoreCase))
+                        .Skip(foodsCurPage * foodPageSize)
+                        .Take(foodPageSize)
+                        .ToList();
+                }
+                if (filteredFoods.Count == 0 && foodsCurPage != 0)
+                {
+                    foodsCurPage--;
+                    setFoodList();
+                    return;
+                }
+
+                foodListBox.DataSource = filteredFoods;
+                foodListBox.DisplayMember = "Name";
+                foodListBox.ValueMember = "Id";
+            }
+        }
+
+        private void foodSearchBtn_Click(object sender, EventArgs e)
+        {
+            searchPhrase = foodSearchBox.Text;
+            setFoodList();
+        }
+
+        private void foodNextBtn_Click(object sender, EventArgs e)
+        {
+            foodsCurPage++;
+            setFoodList();
+        }
+
+        private void foodBackBtn_Click(object sender, EventArgs e)
+        {
+            if (foodsCurPage > 0)
+            {
+                foodsCurPage--;
+                setFoodList();
+            }
+        }
+
+        private void foodSearchBox_TextChanged_1(object sender, EventArgs e)
+        {
+            searchPhrase = foodSearchBox.Text;
+            setFoodList();
+        }
+
+        private void foodListBox_DoubleClick(object sender, MouseEventArgs e)
+        {
+            int index = foodListBox.SelectedIndex;
+            if (index != System.Windows.Forms.ListBox.NoMatches)
+            {
+                var foodInfoForm = new showFoodInfo(filteredFoods[index]);
+                foodInfoForm.Show();
+
+            }
+        }
+
+        private async void foodDeleteBtn_Click(object sender, EventArgs e)
+        {
+            int selectedIndex = foodListBox.SelectedIndex;
+            if (selectedIndex < 0 || filteredFoods == null || selectedIndex >= filteredFoods.Count)
+            {
+                MessageBox.Show("Wybierz jedzenie do usunięcia.");
+                return;
+            }
+
+            var foodToDelete = filteredFoods[selectedIndex];
+
+            var confirmResult = MessageBox.Show(
+                $"Czy chcesz usunąć '{foodToDelete.Name}'?",
+                "Confirm Delete",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (confirmResult == DialogResult.Yes)
+            {
+                using (var _foodService = getFoodService())
+                {
+                    await _foodService.DeleteFoodAsync(foodToDelete.Id);
+                }
+                setFoodList();
+                setUpAddNote();
+                toEditFood = null;
+                editFoodUpdateBTN.Enabled = false;
+                editFoodUpdateBTN.Text = "Brak rekordu do edycji";
+            }
+        }
+
+        private void foodEditBtn_Click(object sender, EventArgs e)
+        {
+            int selectedIndex = foodListBox.SelectedIndex;
+            if (selectedIndex < 0 || filteredFoods == null || selectedIndex >= filteredFoods.Count)
+            {
+                MessageBox.Show("Wybierz jedzenie do edycji.");
+                return;
+            }
+
+            toEditFood = filteredFoods[selectedIndex];
+
+            editFoodName.Text = toEditFood.Name;
+            editFoodCalorie.Text = toEditFood.Calorie.ToString("0.##");
+            editFoodFats.Text = toEditFood.Fats?.ToString("0.##") ?? "";
+            editFoodSalts.Text = toEditFood.Salts?.ToString("0.##") ?? "";
+            editFoodProtein.Text = toEditFood.Protein?.ToString("0.##") ?? "";
+            editFoodCaffeine.Text = toEditFood.Caffeine?.ToString("0.##") ?? "";
+            editFoodGramsInPortion.Text = toEditFood.GramsInPortion.ToString("0.##");
+
+            editFoodUpdateBTN.Enabled = true;
+            editFoodUpdateBTN.Text = "Edytuj";
+            mainTabControl.SelectTab(editFood);
+        }
+
+        private async void editFoodUpdateBTN_Click(object sender, EventArgs e)
+        {
+            if (toEditFood == null)
+            {
+                MessageBox.Show("No food selected for editing.");
+                return;
+            }
+
+            string name = editFoodName.Text.Trim();
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                MessageBox.Show("Name is required.");
+                return;
+            }
+
+            if (!decimal.TryParse(editFoodCalorie.Text, out decimal calorie) || calorie < 0)
+            {
+                MessageBox.Show("Calorie must be a non-negative number.");
+                return;
+            }
+
+            if (!decimal.TryParse(editFoodGramsInPortion.Text, out decimal gramsInPortion) || gramsInPortion <= 0)
+            {
+                MessageBox.Show("Grams in portion must be a positive number.");
+                return;
+            }
+
+            decimal? fats = null, salts = null, protein = null, caffeine = null;
+
+            if (string.IsNullOrWhiteSpace(editFoodFats.Text) || !decimal.TryParse(editFoodFats.Text, out decimal fatsVal))
+            {
+                MessageBox.Show("Fats is required and must be a number.");
+                return;
+            }
+            fats = fatsVal;
+
+            if (string.IsNullOrWhiteSpace(editFoodSalts.Text) || !decimal.TryParse(editFoodSalts.Text, out decimal saltsVal))
+            {
+                MessageBox.Show("Salts is required and must be a number.");
+                return;
+            }
+            salts = saltsVal;
+
+            if (string.IsNullOrWhiteSpace(editFoodProtein.Text) || !decimal.TryParse(editFoodProtein.Text, out decimal proteinVal))
+            {
+                MessageBox.Show("Protein is required and must be a number.");
+                return;
+            }
+            protein = proteinVal;
+
+            if (!string.IsNullOrWhiteSpace(editFoodCaffeine.Text))
+            {
+                if (!decimal.TryParse(editFoodCaffeine.Text, out decimal caffeineVal))
+                {
+                    MessageBox.Show("Caffeine must be a number or empty.");
+                    return;
+                }
+                caffeine = caffeineVal;
+            }
+
+            // Update food
+            toEditFood.Name = name;
+            toEditFood.Calorie = calorie;
+            toEditFood.Fats = fats;
+            toEditFood.Salts = salts;
+            toEditFood.Protein = protein;
+            toEditFood.Caffeine = caffeine;
+            toEditFood.GramsInPortion = gramsInPortion;
+
+            editFoodName.Text = "";
+            editFoodCalorie.Text = "";
+            editFoodFats.Text = "";
+            editFoodSalts.Text = "";
+            editFoodProtein.Text = "";
+            editFoodCaffeine.Text = "";
+            editFoodGramsInPortion.Text = "";
+
+            using (var _foodService = getFoodService())
+            {
+                await _foodService.UpdateFoodAsync(toEditFood);
+            }
+
+            editFoodLBL.Text = "Zaktualizowano";
+            editFoodUpdateBTN.Enabled = false;
+            setFoodList();
+            setFoodCB();
+            setUpAddNote();
+            await Task.Delay(2000);
+            toEditFood = null;
+            editFoodUpdateBTN.Text = "Brak rekordu do edycji";
+            editFoodLBL.Text = "";
+        }
+
+        private async void setUpAddNote()
+        {
+            using (var _foodService = getFoodService())
+            {
+                var foods = await _foodService.GetAllFoodsAsync();
+
+                addNoteCB.DataSource = foods;
+                addNoteCB.DisplayMember = "Name";
+                addNoteCB.ValueMember = "Id";
+            }
+        }
+
+        private void addNoteTextBox_TextChanged(object sender, EventArgs e)
+        {
+            string input = addNoteTextBox.Text;
+            if (string.IsNullOrWhiteSpace(input) || addNoteCB.DataSource == null)
+                return;
+
+            var foods = addNoteCB.DataSource as IEnumerable<Food>;
+            if (foods == null)
+                return;
+
+            var words = input.Split(new[] { ' ', ',', '.', '!', '?', ';', ':', '-', '_', '/', '\\', '\'', '\"', '(', ')', '[', ']', '{', '}' }, StringSplitOptions.RemoveEmptyEntries);
+
+            var match = foods.FirstOrDefault(f =>
+                !string.IsNullOrWhiteSpace(f.Name) &&
+                words.Any(word => string.Equals(word, f.Name, StringComparison.OrdinalIgnoreCase))
+            );
+
+            if (match != null)
+            {
+                addNoteCB.SelectedValue = match.Id;
+                return;
+            }
+
+            match = foods.FirstOrDefault(f =>
+                !string.IsNullOrWhiteSpace(f.Name) &&
+                words.Any(word =>
+                    string.Equals(word, f.Name.Split(' ', StringSplitOptions.RemoveEmptyEntries).FirstOrDefault() ?? "", StringComparison.OrdinalIgnoreCase))
+            );
+
+            if (match != null)
+            {
+                addNoteCB.SelectedValue = match.Id;
+                return;
+            }
+
+            try
+            {
+                var regex = new System.Text.RegularExpressions.Regex(input, System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                match = foods.FirstOrDefault(f => regex.IsMatch(f.Name));
+                if (match != null)
+                {
+                    addNoteCB.SelectedValue = match.Id;
+                }
+            }
+            catch (ArgumentException)
+            {
+                // Invalid regex pattern, ignore
+            }
+        }
+
+        private async void addNoteAddBTN_Click(object sender, EventArgs e)
+        {
+            string noteText = addNoteTextBox.Text?.Trim();
+            if (string.IsNullOrWhiteSpace(noteText))
+            {
+                MessageBox.Show("Note text is required.");
+                return;
+            }
+
+            DateTime noteDate = addNoteDate.Value.Date;
+            int? foodId = null;
+
+            if (addNoteCheckBox.Checked)
+            {
+                if (addNoteCB.SelectedValue == null || !int.TryParse(addNoteCB.SelectedValue.ToString(), out int parsedFoodId))
+                {
+                    MessageBox.Show("Select a valid food item.");
+                    return;
+                }
+                foodId = parsedFoodId;
+            }
+
+            var note = new Note
+            {
+                DateTime = noteDate,
+                Noted = noteText,
+                FoodId = foodId
+            };
+
+            using (var noteService = getNoteService())
+            {
+                await noteService.CreateNoteAsync(note);
+            }
+
+            addNoteLBL.Text = "Dodano!";
+            addNoteTextBox.Text = "";
+            await Task.Delay(2000);
+            addNoteLBL.Text = "";
+        }
+
+        private async void addFoodBtn_Click(object sender, EventArgs e)
+        {
+            string name = addFoodName.Text.Trim();
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                MessageBox.Show("Name is required.");
+                return;
+            }
+
+            if (!decimal.TryParse(addFoodCalorie.Text, out decimal calorie) || calorie < 0)
+            {
+                MessageBox.Show("Calorie must be a non-negative number.");
+                return;
+            }
+
+            if (!decimal.TryParse(addFoodFats.Text, out decimal fats))
+            {
+                MessageBox.Show("Fats is required and must be a number.");
+                return;
+            }
+
+            if (!decimal.TryParse(addFoodSalts.Text, out decimal salts))
+            {
+                MessageBox.Show("Salts is required and must be a number.");
+                return;
+            }
+
+            if (!decimal.TryParse(addFoodProteine.Text, out decimal protein))
+            {
+                MessageBox.Show("Protein is required and must be a number.");
+                return;
+            }
+
+            if (!decimal.TryParse(addFoodGramsInPortion.Text, out decimal gramsInPortion) || gramsInPortion <= 0)
+            {
+                MessageBox.Show("Grams in portion must be a positive number.");
+                return;
+            }
+
+            decimal? caffeine = null;
+            if (!string.IsNullOrWhiteSpace(addFoodCafeine.Text))
+            {
+                if (!decimal.TryParse(addFoodCafeine.Text, out decimal caffeineVal))
+                {
+                    MessageBox.Show("Caffeine must be a number or empty.");
+                    return;
+                }
+                caffeine = caffeineVal;
+            }
+
+            var newFood = new Food
+            {
+                Name = name,
+                Calorie = calorie,
+                Fats = fats,
+                Salts = salts,
+                Protein = protein,
+                Caffeine = caffeine,
+                GramsInPortion = gramsInPortion
+            };
+
+            using (var _foodService = getFoodService())
+            {
+                await _foodService.CreateFoodAsync(newFood);
+            }
+
+            addFoodName.Text = "";
+            addFoodCalorie.Text = "";
+            addFoodFats.Text = "";
+            addFoodSalts.Text = "";
+            addFoodProteine.Text = "";
+            addFoodCafeine.Text = "";
+            addFoodGramsInPortion.Text = "";
+
+            addFoodLBL.Text = "Dodano!";
+            setFoodList();
+            setFoodCB();
+            setUpAddNote();
+            await Task.Delay(2000);
+            addFoodLBL.Text = "";
         }
     }
 }

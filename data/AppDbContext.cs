@@ -60,8 +60,9 @@ namespace Calorie_Tracker.data
                 new Food { Id = 16, Name = "Peanut Butter", Calorie = 588m, Fats = 50m, Salts = 1.2m, Protein = 25m, GramsInPortion = 100 },
                 new Food { Id = 17, Name = "Almonds", Calorie = 579m, Fats = 49m, Salts = 0m, Protein = 21m, GramsInPortion = 100 },
                 new Food { Id = 18, Name = "Oatmeal", Calorie = 68m, Fats = 1.4m, Salts = 0m, Protein = 2.4m, GramsInPortion = 40 },
-                new Food { Id = 19, Name = "Tea", Calorie = 1m, Fats = 0m, Salts = 0m, Protein = 0m, GramsInPortion = 250, Caffeine = 47m },
-                new Food { Id = 20, Name = "Coffee", Calorie = 2m, Fats = 0m, Salts = 0m, Protein = 0.3m, GramsInPortion = 250, Caffeine = 95m }
+                new Food { Id = 19, Name = "Tea", Calorie = 1m, Fats = 0m, Salts = 0m, Protein = 0m, GramsInPortion = 250, Caffeine = 5m },
+                new Food { Id = 20, Name = "Coffee", Calorie = 2m, Fats = 0m, Salts = 0m, Protein = 0.3m, GramsInPortion = 250, Caffeine = 25m },
+                new Food { Id = 21, Name = "Brain Implosion Energy Drink", Calorie = 0m, Fats = 0m, Salts = 0m, Protein = 0m, GramsInPortion = 10000, Caffeine = 100m }
             );
 
             modelBuilder.Entity<HistoryRecord>().HasData(

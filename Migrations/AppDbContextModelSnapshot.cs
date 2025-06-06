@@ -60,9 +60,9 @@ namespace Calorie_Tracker.Migrations
                         new
                         {
                             Id = 1,
-                            Calorie = 1400m,
+                            Calorie = 300m,
                             Fats = 13.4m,
-                            GramsInPortion = 160m,
+                            GramsInPortion = 132m,
                             Name = "Pizza",
                             Protein = 10m,
                             Salts = 14m
@@ -70,9 +70,9 @@ namespace Calorie_Tracker.Migrations
                         new
                         {
                             Id = 2,
-                            Calorie = 900m,
+                            Calorie = 225m,
                             Fats = 16.4m,
-                            GramsInPortion = 30m,
+                            GramsInPortion = 140m,
                             Name = "Spaghetti",
                             Protein = 20m,
                             Salts = 18m
@@ -90,7 +90,7 @@ namespace Calorie_Tracker.Migrations
                         new
                         {
                             Id = 4,
-                            Calorie = 52m,
+                            Calorie = 90m,
                             Fats = 0.2m,
                             GramsInPortion = 150m,
                             Name = "Apple",
@@ -100,7 +100,7 @@ namespace Calorie_Tracker.Migrations
                         new
                         {
                             Id = 5,
-                            Calorie = 89m,
+                            Calorie = 100m,
                             Fats = 0.3m,
                             GramsInPortion = 120m,
                             Name = "Banana",
@@ -110,7 +110,7 @@ namespace Calorie_Tracker.Migrations
                         new
                         {
                             Id = 6,
-                            Calorie = 55m,
+                            Calorie = 120m,
                             Fats = 0.6m,
                             GramsInPortion = 100m,
                             Name = "Broccoli",
@@ -130,7 +130,7 @@ namespace Calorie_Tracker.Migrations
                         new
                         {
                             Id = 8,
-                            Calorie = 160m,
+                            Calorie = 90m,
                             Fats = 15m,
                             GramsInPortion = 100m,
                             Name = "Avocado",
@@ -140,7 +140,7 @@ namespace Calorie_Tracker.Migrations
                         new
                         {
                             Id = 9,
-                            Calorie = 130m,
+                            Calorie = 200m,
                             Fats = 0.3m,
                             GramsInPortion = 100m,
                             Name = "Rice",
@@ -170,7 +170,7 @@ namespace Calorie_Tracker.Migrations
                         new
                         {
                             Id = 12,
-                            Calorie = 47m,
+                            Calorie = 90m,
                             Fats = 0.1m,
                             GramsInPortion = 130m,
                             Name = "Orange",
@@ -240,7 +240,7 @@ namespace Calorie_Tracker.Migrations
                         new
                         {
                             Id = 19,
-                            Caffeine = 47m,
+                            Caffeine = 5m,
                             Calorie = 1m,
                             Fats = 0m,
                             GramsInPortion = 250m,
@@ -251,12 +251,23 @@ namespace Calorie_Tracker.Migrations
                         new
                         {
                             Id = 20,
-                            Caffeine = 95m,
+                            Caffeine = 25m,
                             Calorie = 2m,
                             Fats = 0m,
                             GramsInPortion = 250m,
                             Name = "Coffee",
                             Protein = 0.3m,
+                            Salts = 0m
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Caffeine = 100m,
+                            Calorie = 0m,
+                            Fats = 0m,
+                            GramsInPortion = 10000m,
+                            Name = "Brain Implosion Energy Drink",
+                            Protein = 0m,
                             Salts = 0m
                         });
                 });

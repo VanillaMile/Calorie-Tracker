@@ -73,15 +73,15 @@
             historyDelete = new Button();
             foodsPage = new TabPage();
             tableLayoutPanel11 = new TableLayoutPanel();
-            listBox2 = new ListBox();
+            foodListBox = new ListBox();
             tableLayoutPanel12 = new TableLayoutPanel();
-            textBox8 = new TextBox();
-            button5 = new Button();
+            foodSearchBox = new TextBox();
+            foodSearchBtn = new Button();
             tableLayoutPanel13 = new TableLayoutPanel();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
+            foodNextBtn = new Button();
+            foodBackBtn = new Button();
+            foodEditBtn = new Button();
+            foodDeleteBtn = new Button();
             notesPage = new TabPage();
             tableLayoutPanel9 = new TableLayoutPanel();
             tableLayoutPanel14 = new TableLayoutPanel();
@@ -97,26 +97,40 @@
             label16 = new Label();
             dateTimePicker4 = new DateTimePicker();
             listBox1 = new ListBox();
+            addNote = new TabPage();
+            tableLayoutPanel21 = new TableLayoutPanel();
+            label29 = new Label();
+            flowLayoutPanel6 = new FlowLayoutPanel();
+            label33 = new Label();
+            label39 = new Label();
+            addNoteDate = new DateTimePicker();
+            label40 = new Label();
+            addNoteCheckBox = new CheckBox();
+            addNoteCB = new ComboBox();
+            addNoteTextBox = new TextBox();
+            addNoteAddBTN = new Button();
+            label41 = new Label();
+            addNoteLBL = new Label();
             addFoodPage = new TabPage();
             tableLayoutPanel3 = new TableLayoutPanel();
             label7 = new Label();
             addFoodBtn = new Button();
             tableLayoutPanel4 = new TableLayoutPanel();
             label8 = new Label();
-            textBox7 = new TextBox();
+            addFoodGramsInPortion = new TextBox();
             label6 = new Label();
-            textBox6 = new TextBox();
+            addFoodCafeine = new TextBox();
             label5 = new Label();
-            textBox5 = new TextBox();
+            addFoodProteine = new TextBox();
             label4 = new Label();
-            textBox4 = new TextBox();
+            addFoodSalts = new TextBox();
             label3 = new Label();
-            textBox3 = new TextBox();
+            addFoodFats = new TextBox();
             label2 = new Label();
-            textBox2 = new TextBox();
+            addFoodCalorie = new TextBox();
             label1 = new Label();
-            textBox1 = new TextBox();
-            errorAddFoodItemLabel = new Label();
+            addFoodName = new TextBox();
+            addFoodLBL = new Label();
             editHistory = new TabPage();
             tableLayoutPanel15 = new TableLayoutPanel();
             label17 = new Label();
@@ -133,6 +147,40 @@
             editHistoryCombo = new ComboBox();
             label24 = new Label();
             editHistoryLabel = new Label();
+            editFood = new TabPage();
+            tableLayoutPanel17 = new TableLayoutPanel();
+            label19 = new Label();
+            editFoodUpdateBTN = new Button();
+            tableLayoutPanel18 = new TableLayoutPanel();
+            label38 = new Label();
+            editFoodGramsInPortion = new TextBox();
+            editFoodCaffeine = new TextBox();
+            editFoodSalts = new TextBox();
+            editFoodName = new TextBox();
+            editFoodProtein = new TextBox();
+            label20 = new Label();
+            label25 = new Label();
+            label26 = new Label();
+            editFoodFats = new TextBox();
+            label27 = new Label();
+            editFoodCalorie = new TextBox();
+            label28 = new Label();
+            label37 = new Label();
+            editFoodLBL = new Label();
+            editNote = new TabPage();
+            tableLayoutPanel19 = new TableLayoutPanel();
+            label30 = new Label();
+            button2 = new Button();
+            tableLayoutPanel20 = new TableLayoutPanel();
+            label32 = new Label();
+            label34 = new Label();
+            dateTimePicker2 = new DateTimePicker();
+            label35 = new Label();
+            checkBox1 = new CheckBox();
+            label31 = new Label();
+            textBox13 = new TextBox();
+            comboBox2 = new ComboBox();
+            label36 = new Label();
             mainTabControl.SuspendLayout();
             statsPage.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
@@ -158,12 +206,21 @@
             tableLayoutPanel10.SuspendLayout();
             flowLayoutPanel3.SuspendLayout();
             flowLayoutPanel5.SuspendLayout();
+            addNote.SuspendLayout();
+            tableLayoutPanel21.SuspendLayout();
+            flowLayoutPanel6.SuspendLayout();
             addFoodPage.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
             tableLayoutPanel4.SuspendLayout();
             editHistory.SuspendLayout();
             tableLayoutPanel15.SuspendLayout();
             tableLayoutPanel16.SuspendLayout();
+            editFood.SuspendLayout();
+            tableLayoutPanel17.SuspendLayout();
+            tableLayoutPanel18.SuspendLayout();
+            editNote.SuspendLayout();
+            tableLayoutPanel19.SuspendLayout();
+            tableLayoutPanel20.SuspendLayout();
             SuspendLayout();
             // 
             // mainTabControl
@@ -173,8 +230,11 @@
             mainTabControl.Controls.Add(historyPage);
             mainTabControl.Controls.Add(foodsPage);
             mainTabControl.Controls.Add(notesPage);
+            mainTabControl.Controls.Add(addNote);
             mainTabControl.Controls.Add(addFoodPage);
             mainTabControl.Controls.Add(editHistory);
+            mainTabControl.Controls.Add(editFood);
+            mainTabControl.Controls.Add(editNote);
             mainTabControl.Dock = DockStyle.Fill;
             mainTabControl.Location = new Point(0, 0);
             mainTabControl.Name = "mainTabControl";
@@ -190,7 +250,7 @@
             statsPage.Padding = new Padding(3);
             statsPage.Size = new Size(792, 422);
             statsPage.TabIndex = 0;
-            statsPage.Text = "Statistics";
+            statsPage.Text = "Statystyki";
             statsPage.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel1
@@ -370,7 +430,7 @@
             logFoodPage.Name = "logFoodPage";
             logFoodPage.Size = new Size(792, 422);
             logFoodPage.TabIndex = 4;
-            logFoodPage.Text = "Log Food";
+            logFoodPage.Text = "Dodaj do Histori";
             logFoodPage.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel2
@@ -491,7 +551,7 @@
             addFoodHistoryRecord.Name = "addFoodHistoryRecord";
             addFoodHistoryRecord.Size = new Size(152, 23);
             addFoodHistoryRecord.TabIndex = 4;
-            addFoodHistoryRecord.Text = "Add";
+            addFoodHistoryRecord.Text = "Dodaj";
             addFoodHistoryRecord.UseVisualStyleBackColor = true;
             addFoodHistoryRecord.Click += addFoodHistoryRecord_Click;
             // 
@@ -513,7 +573,7 @@
             historyPage.Name = "historyPage";
             historyPage.Size = new Size(792, 422);
             historyPage.TabIndex = 3;
-            historyPage.Text = "History";
+            historyPage.Text = "Historia";
             historyPage.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel6
@@ -688,14 +748,14 @@
             foodsPage.Padding = new Padding(3);
             foodsPage.Size = new Size(792, 422);
             foodsPage.TabIndex = 1;
-            foodsPage.Text = "Foods";
+            foodsPage.Text = "Jedzenie";
             foodsPage.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel11
             // 
             tableLayoutPanel11.ColumnCount = 1;
             tableLayoutPanel11.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel11.Controls.Add(listBox2, 1, 1);
+            tableLayoutPanel11.Controls.Add(foodListBox, 1, 1);
             tableLayoutPanel11.Controls.Add(tableLayoutPanel12, 0, 0);
             tableLayoutPanel11.Controls.Add(tableLayoutPanel13, 0, 2);
             tableLayoutPanel11.Dock = DockStyle.Fill;
@@ -708,22 +768,23 @@
             tableLayoutPanel11.Size = new Size(786, 416);
             tableLayoutPanel11.TabIndex = 2;
             // 
-            // listBox2
+            // foodListBox
             // 
-            listBox2.Dock = DockStyle.Fill;
-            listBox2.FormattingEnabled = true;
-            listBox2.Location = new Point(3, 44);
-            listBox2.Name = "listBox2";
-            listBox2.Size = new Size(780, 326);
-            listBox2.TabIndex = 0;
+            foodListBox.Dock = DockStyle.Fill;
+            foodListBox.FormattingEnabled = true;
+            foodListBox.Location = new Point(3, 44);
+            foodListBox.Name = "foodListBox";
+            foodListBox.Size = new Size(780, 326);
+            foodListBox.TabIndex = 0;
+            foodListBox.MouseDoubleClick += foodListBox_DoubleClick;
             // 
             // tableLayoutPanel12
             // 
             tableLayoutPanel12.ColumnCount = 2;
             tableLayoutPanel12.ColumnStyles.Add(new ColumnStyle());
             tableLayoutPanel12.ColumnStyles.Add(new ColumnStyle());
-            tableLayoutPanel12.Controls.Add(textBox8, 0, 0);
-            tableLayoutPanel12.Controls.Add(button5, 1, 0);
+            tableLayoutPanel12.Controls.Add(foodSearchBox, 0, 0);
+            tableLayoutPanel12.Controls.Add(foodSearchBtn, 1, 0);
             tableLayoutPanel12.Dock = DockStyle.Fill;
             tableLayoutPanel12.Location = new Point(3, 3);
             tableLayoutPanel12.Name = "tableLayoutPanel12";
@@ -732,23 +793,25 @@
             tableLayoutPanel12.Size = new Size(780, 35);
             tableLayoutPanel12.TabIndex = 3;
             // 
-            // textBox8
+            // foodSearchBox
             // 
-            textBox8.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            textBox8.Location = new Point(3, 9);
-            textBox8.Name = "textBox8";
-            textBox8.Size = new Size(384, 23);
-            textBox8.TabIndex = 0;
+            foodSearchBox.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            foodSearchBox.Location = new Point(3, 9);
+            foodSearchBox.Name = "foodSearchBox";
+            foodSearchBox.Size = new Size(384, 23);
+            foodSearchBox.TabIndex = 0;
+            foodSearchBox.TextChanged += foodSearchBox_TextChanged_1;
             // 
-            // button5
+            // foodSearchBtn
             // 
-            button5.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            button5.Location = new Point(393, 9);
-            button5.Name = "button5";
-            button5.Size = new Size(75, 23);
-            button5.TabIndex = 1;
-            button5.Text = "Szukaj";
-            button5.UseVisualStyleBackColor = true;
+            foodSearchBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            foodSearchBtn.Location = new Point(393, 9);
+            foodSearchBtn.Name = "foodSearchBtn";
+            foodSearchBtn.Size = new Size(75, 23);
+            foodSearchBtn.TabIndex = 1;
+            foodSearchBtn.Text = "Szukaj";
+            foodSearchBtn.UseVisualStyleBackColor = true;
+            foodSearchBtn.Click += foodSearchBtn_Click;
             // 
             // tableLayoutPanel13
             // 
@@ -759,10 +822,10 @@
             tableLayoutPanel13.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 15F));
             tableLayoutPanel13.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
             tableLayoutPanel13.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
-            tableLayoutPanel13.Controls.Add(button1, 3, 0);
-            tableLayoutPanel13.Controls.Add(button2, 2, 0);
-            tableLayoutPanel13.Controls.Add(button3, 5, 0);
-            tableLayoutPanel13.Controls.Add(button4, 0, 0);
+            tableLayoutPanel13.Controls.Add(foodNextBtn, 3, 0);
+            tableLayoutPanel13.Controls.Add(foodBackBtn, 2, 0);
+            tableLayoutPanel13.Controls.Add(foodEditBtn, 5, 0);
+            tableLayoutPanel13.Controls.Add(foodDeleteBtn, 0, 0);
             tableLayoutPanel13.Dock = DockStyle.Fill;
             tableLayoutPanel13.Location = new Point(3, 376);
             tableLayoutPanel13.Name = "tableLayoutPanel13";
@@ -771,46 +834,49 @@
             tableLayoutPanel13.Size = new Size(780, 37);
             tableLayoutPanel13.TabIndex = 4;
             // 
-            // button1
+            // foodNextBtn
             // 
-            button1.Location = new Point(393, 3);
-            button1.Name = "button1";
-            button1.Size = new Size(111, 31);
-            button1.TabIndex = 1;
-            button1.Text = "Następna";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            foodNextBtn.Location = new Point(393, 3);
+            foodNextBtn.Name = "foodNextBtn";
+            foodNextBtn.Size = new Size(111, 31);
+            foodNextBtn.TabIndex = 1;
+            foodNextBtn.Text = "Następna";
+            foodNextBtn.UseVisualStyleBackColor = true;
+            foodNextBtn.Click += foodNextBtn_Click;
             // 
-            // button2
+            // foodBackBtn
             // 
-            button2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            button2.Location = new Point(276, 3);
-            button2.Name = "button2";
-            button2.Size = new Size(111, 31);
-            button2.TabIndex = 0;
-            button2.Text = "Poprzednia";
-            button2.UseVisualStyleBackColor = true;
+            foodBackBtn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            foodBackBtn.Location = new Point(276, 3);
+            foodBackBtn.Name = "foodBackBtn";
+            foodBackBtn.Size = new Size(111, 31);
+            foodBackBtn.TabIndex = 0;
+            foodBackBtn.Text = "Poprzednia";
+            foodBackBtn.UseVisualStyleBackColor = true;
+            foodBackBtn.Click += foodBackBtn_Click;
             // 
-            // button3
+            // foodEditBtn
             // 
-            button3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            button3.Location = new Point(705, 3);
-            button3.Name = "button3";
-            button3.Size = new Size(72, 31);
-            button3.TabIndex = 2;
-            button3.Text = "Edytuj";
-            button3.UseVisualStyleBackColor = true;
+            foodEditBtn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            foodEditBtn.Location = new Point(705, 3);
+            foodEditBtn.Name = "foodEditBtn";
+            foodEditBtn.Size = new Size(72, 31);
+            foodEditBtn.TabIndex = 2;
+            foodEditBtn.Text = "Edytuj";
+            foodEditBtn.UseVisualStyleBackColor = true;
+            foodEditBtn.Click += foodEditBtn_Click;
             // 
-            // button4
+            // foodDeleteBtn
             // 
-            button4.BackColor = Color.Transparent;
-            button4.ForeColor = Color.Firebrick;
-            button4.Location = new Point(3, 3);
-            button4.Name = "button4";
-            button4.Size = new Size(72, 31);
-            button4.TabIndex = 3;
-            button4.Text = "Usuń";
-            button4.UseVisualStyleBackColor = false;
+            foodDeleteBtn.BackColor = Color.Transparent;
+            foodDeleteBtn.ForeColor = Color.Firebrick;
+            foodDeleteBtn.Location = new Point(3, 3);
+            foodDeleteBtn.Name = "foodDeleteBtn";
+            foodDeleteBtn.Size = new Size(72, 31);
+            foodDeleteBtn.TabIndex = 3;
+            foodDeleteBtn.Text = "Usuń";
+            foodDeleteBtn.UseVisualStyleBackColor = false;
+            foodDeleteBtn.Click += foodDeleteBtn_Click;
             // 
             // notesPage
             // 
@@ -819,7 +885,7 @@
             notesPage.Name = "notesPage";
             notesPage.Size = new Size(792, 422);
             notesPage.TabIndex = 5;
-            notesPage.Text = "Notes";
+            notesPage.Text = "Notatki";
             notesPage.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel9
@@ -980,6 +1046,163 @@
             listBox1.Size = new Size(786, 331);
             listBox1.TabIndex = 10;
             // 
+            // addNote
+            // 
+            addNote.Controls.Add(tableLayoutPanel21);
+            addNote.Location = new Point(4, 24);
+            addNote.Name = "addNote";
+            addNote.Size = new Size(792, 422);
+            addNote.TabIndex = 9;
+            addNote.Text = "Dodaj notatkę";
+            addNote.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel21
+            // 
+            tableLayoutPanel21.ColumnCount = 4;
+            tableLayoutPanel21.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
+            tableLayoutPanel21.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60F));
+            tableLayoutPanel21.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            tableLayoutPanel21.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
+            tableLayoutPanel21.Controls.Add(label29, 1, 0);
+            tableLayoutPanel21.Controls.Add(flowLayoutPanel6, 1, 2);
+            tableLayoutPanel21.Controls.Add(addNoteTextBox, 1, 1);
+            tableLayoutPanel21.Controls.Add(addNoteAddBTN, 2, 1);
+            tableLayoutPanel21.Controls.Add(label41, 3, 0);
+            tableLayoutPanel21.Controls.Add(addNoteLBL, 2, 0);
+            tableLayoutPanel21.Dock = DockStyle.Fill;
+            tableLayoutPanel21.Location = new Point(0, 0);
+            tableLayoutPanel21.Name = "tableLayoutPanel21";
+            tableLayoutPanel21.RowCount = 4;
+            tableLayoutPanel21.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
+            tableLayoutPanel21.RowStyles.Add(new RowStyle());
+            tableLayoutPanel21.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel21.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
+            tableLayoutPanel21.Size = new Size(792, 422);
+            tableLayoutPanel21.TabIndex = 1;
+            // 
+            // label29
+            // 
+            label29.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            label29.AutoSize = true;
+            label29.Font = new Font("Segoe UI", 26.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label29.Location = new Point(82, 51);
+            label29.Name = "label29";
+            label29.Size = new Size(241, 47);
+            label29.TabIndex = 1;
+            label29.Text = "Dodaj notatkę";
+            // 
+            // flowLayoutPanel6
+            // 
+            flowLayoutPanel6.Controls.Add(label33);
+            flowLayoutPanel6.Controls.Add(label39);
+            flowLayoutPanel6.Controls.Add(addNoteDate);
+            flowLayoutPanel6.Controls.Add(label40);
+            flowLayoutPanel6.Controls.Add(addNoteCheckBox);
+            flowLayoutPanel6.Controls.Add(addNoteCB);
+            flowLayoutPanel6.Dock = DockStyle.Fill;
+            flowLayoutPanel6.FlowDirection = FlowDirection.TopDown;
+            flowLayoutPanel6.Location = new Point(82, 130);
+            flowLayoutPanel6.Name = "flowLayoutPanel6";
+            flowLayoutPanel6.Size = new Size(469, 190);
+            flowLayoutPanel6.TabIndex = 5;
+            // 
+            // label33
+            // 
+            label33.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            label33.AutoSize = true;
+            label33.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label33.Location = new Point(3, 0);
+            label33.Name = "label33";
+            label33.Size = new Size(165, 25);
+            label33.TabIndex = 2;
+            label33.Text = "Data (Opcjonalne)";
+            // 
+            // label39
+            // 
+            label39.AutoSize = true;
+            label39.Location = new Point(3, 25);
+            label39.Name = "label39";
+            label39.Size = new Size(0, 15);
+            label39.TabIndex = 12;
+            // 
+            // addNoteDate
+            // 
+            addNoteDate.Location = new Point(3, 43);
+            addNoteDate.Name = "addNoteDate";
+            addNoteDate.Size = new Size(200, 23);
+            addNoteDate.TabIndex = 13;
+            // 
+            // label40
+            // 
+            label40.AutoSize = true;
+            label40.Location = new Point(3, 69);
+            label40.Name = "label40";
+            label40.Size = new Size(0, 15);
+            label40.TabIndex = 14;
+            // 
+            // addNoteCheckBox
+            // 
+            addNoteCheckBox.AutoSize = true;
+            addNoteCheckBox.Checked = true;
+            addNoteCheckBox.CheckState = CheckState.Checked;
+            addNoteCheckBox.Location = new Point(3, 87);
+            addNoteCheckBox.Name = "addNoteCheckBox";
+            addNoteCheckBox.Size = new Size(122, 19);
+            addNoteCheckBox.TabIndex = 15;
+            addNoteCheckBox.Text = "Dodaj z jedzeniem";
+            addNoteCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // addNoteCB
+            // 
+            addNoteCB.Dock = DockStyle.Fill;
+            addNoteCB.FormattingEnabled = true;
+            addNoteCB.Location = new Point(3, 112);
+            addNoteCB.Name = "addNoteCB";
+            addNoteCB.Size = new Size(200, 23);
+            addNoteCB.TabIndex = 16;
+            // 
+            // addNoteTextBox
+            // 
+            addNoteTextBox.Dock = DockStyle.Fill;
+            addNoteTextBox.Location = new Point(82, 101);
+            addNoteTextBox.Name = "addNoteTextBox";
+            addNoteTextBox.Size = new Size(469, 23);
+            addNoteTextBox.TabIndex = 12;
+            addNoteTextBox.TextChanged += addNoteTextBox_TextChanged;
+            // 
+            // addNoteAddBTN
+            // 
+            addNoteAddBTN.Dock = DockStyle.Fill;
+            addNoteAddBTN.Location = new Point(557, 101);
+            addNoteAddBTN.Name = "addNoteAddBTN";
+            addNoteAddBTN.Size = new Size(152, 23);
+            addNoteAddBTN.TabIndex = 13;
+            addNoteAddBTN.Text = "Dodaj";
+            addNoteAddBTN.UseVisualStyleBackColor = true;
+            addNoteAddBTN.Click += addNoteAddBTN_Click;
+            // 
+            // label41
+            // 
+            label41.Anchor = AnchorStyles.Bottom;
+            label41.AutoSize = true;
+            label41.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label41.ForeColor = Color.Lime;
+            label41.Location = new Point(752, 77);
+            label41.Name = "label41";
+            label41.Size = new Size(0, 21);
+            label41.TabIndex = 11;
+            // 
+            // addNoteLBL
+            // 
+            addNoteLBL.Anchor = AnchorStyles.Bottom;
+            addNoteLBL.AutoSize = true;
+            addNoteLBL.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            addNoteLBL.ForeColor = Color.Lime;
+            addNoteLBL.Location = new Point(633, 77);
+            addNoteLBL.Name = "addNoteLBL";
+            addNoteLBL.Size = new Size(0, 21);
+            addNoteLBL.TabIndex = 14;
+            // 
             // addFoodPage
             // 
             addFoodPage.Controls.Add(tableLayoutPanel3);
@@ -987,7 +1210,7 @@
             addFoodPage.Name = "addFoodPage";
             addFoodPage.Size = new Size(792, 422);
             addFoodPage.TabIndex = 2;
-            addFoodPage.Text = "Add Food Item";
+            addFoodPage.Text = "Dodaj jedzenie";
             addFoodPage.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel3
@@ -999,7 +1222,7 @@
             tableLayoutPanel3.Controls.Add(label7, 1, 0);
             tableLayoutPanel3.Controls.Add(addFoodBtn, 1, 3);
             tableLayoutPanel3.Controls.Add(tableLayoutPanel4, 1, 1);
-            tableLayoutPanel3.Controls.Add(errorAddFoodItemLabel, 1, 2);
+            tableLayoutPanel3.Controls.Add(addFoodLBL, 1, 2);
             tableLayoutPanel3.Dock = DockStyle.Fill;
             tableLayoutPanel3.Location = new Point(0, 0);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -1032,6 +1255,7 @@
             addFoodBtn.TabIndex = 5;
             addFoodBtn.Text = "Dodaj";
             addFoodBtn.UseVisualStyleBackColor = true;
+            addFoodBtn.Click += addFoodBtn_Click;
             // 
             // tableLayoutPanel4
             // 
@@ -1039,19 +1263,19 @@
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle());
             tableLayoutPanel4.Controls.Add(label8, 1, 6);
-            tableLayoutPanel4.Controls.Add(textBox7, 0, 6);
+            tableLayoutPanel4.Controls.Add(addFoodGramsInPortion, 0, 6);
             tableLayoutPanel4.Controls.Add(label6, 1, 5);
-            tableLayoutPanel4.Controls.Add(textBox6, 0, 5);
+            tableLayoutPanel4.Controls.Add(addFoodCafeine, 0, 5);
             tableLayoutPanel4.Controls.Add(label5, 1, 4);
-            tableLayoutPanel4.Controls.Add(textBox5, 0, 4);
+            tableLayoutPanel4.Controls.Add(addFoodProteine, 0, 4);
             tableLayoutPanel4.Controls.Add(label4, 1, 3);
-            tableLayoutPanel4.Controls.Add(textBox4, 0, 3);
+            tableLayoutPanel4.Controls.Add(addFoodSalts, 0, 3);
             tableLayoutPanel4.Controls.Add(label3, 1, 2);
-            tableLayoutPanel4.Controls.Add(textBox3, 0, 2);
+            tableLayoutPanel4.Controls.Add(addFoodFats, 0, 2);
             tableLayoutPanel4.Controls.Add(label2, 1, 1);
-            tableLayoutPanel4.Controls.Add(textBox2, 0, 1);
+            tableLayoutPanel4.Controls.Add(addFoodCalorie, 0, 1);
             tableLayoutPanel4.Controls.Add(label1, 1, 0);
-            tableLayoutPanel4.Controls.Add(textBox1, 0, 0);
+            tableLayoutPanel4.Controls.Add(addFoodName, 0, 0);
             tableLayoutPanel4.Dock = DockStyle.Fill;
             tableLayoutPanel4.Location = new Point(82, 45);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
@@ -1076,13 +1300,13 @@
             label8.TabIndex = 13;
             label8.Text = "Gram w porcji";
             // 
-            // textBox7
+            // addFoodGramsInPortion
             // 
-            textBox7.Dock = DockStyle.Fill;
-            textBox7.Location = new Point(3, 177);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(449, 23);
-            textBox7.TabIndex = 12;
+            addFoodGramsInPortion.Dock = DockStyle.Fill;
+            addFoodGramsInPortion.Location = new Point(3, 177);
+            addFoodGramsInPortion.Name = "addFoodGramsInPortion";
+            addFoodGramsInPortion.Size = new Size(449, 23);
+            addFoodGramsInPortion.TabIndex = 12;
             // 
             // label6
             // 
@@ -1094,13 +1318,13 @@
             label6.TabIndex = 11;
             label6.Text = "Kofeina/100Gram";
             // 
-            // textBox6
+            // addFoodCafeine
             // 
-            textBox6.Dock = DockStyle.Fill;
-            textBox6.Location = new Point(3, 148);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(449, 23);
-            textBox6.TabIndex = 10;
+            addFoodCafeine.Dock = DockStyle.Fill;
+            addFoodCafeine.Location = new Point(3, 148);
+            addFoodCafeine.Name = "addFoodCafeine";
+            addFoodCafeine.Size = new Size(449, 23);
+            addFoodCafeine.TabIndex = 10;
             // 
             // label5
             // 
@@ -1112,13 +1336,13 @@
             label5.TabIndex = 9;
             label5.Text = "Proteiny/100Gram";
             // 
-            // textBox5
+            // addFoodProteine
             // 
-            textBox5.Dock = DockStyle.Fill;
-            textBox5.Location = new Point(3, 119);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(449, 23);
-            textBox5.TabIndex = 8;
+            addFoodProteine.Dock = DockStyle.Fill;
+            addFoodProteine.Location = new Point(3, 119);
+            addFoodProteine.Name = "addFoodProteine";
+            addFoodProteine.Size = new Size(449, 23);
+            addFoodProteine.TabIndex = 8;
             // 
             // label4
             // 
@@ -1130,13 +1354,13 @@
             label4.TabIndex = 7;
             label4.Text = "Sole/100Gram";
             // 
-            // textBox4
+            // addFoodSalts
             // 
-            textBox4.Dock = DockStyle.Fill;
-            textBox4.Location = new Point(3, 90);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(449, 23);
-            textBox4.TabIndex = 6;
+            addFoodSalts.Dock = DockStyle.Fill;
+            addFoodSalts.Location = new Point(3, 90);
+            addFoodSalts.Name = "addFoodSalts";
+            addFoodSalts.Size = new Size(449, 23);
+            addFoodSalts.TabIndex = 6;
             // 
             // label3
             // 
@@ -1148,13 +1372,13 @@
             label3.TabIndex = 5;
             label3.Text = "Tluszcze/100Gram";
             // 
-            // textBox3
+            // addFoodFats
             // 
-            textBox3.Dock = DockStyle.Fill;
-            textBox3.Location = new Point(3, 61);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(449, 23);
-            textBox3.TabIndex = 4;
+            addFoodFats.Dock = DockStyle.Fill;
+            addFoodFats.Location = new Point(3, 61);
+            addFoodFats.Name = "addFoodFats";
+            addFoodFats.Size = new Size(449, 23);
+            addFoodFats.TabIndex = 4;
             // 
             // label2
             // 
@@ -1166,13 +1390,13 @@
             label2.TabIndex = 3;
             label2.Text = "Calorie/100Gram";
             // 
-            // textBox2
+            // addFoodCalorie
             // 
-            textBox2.Dock = DockStyle.Fill;
-            textBox2.Location = new Point(3, 32);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(449, 23);
-            textBox2.TabIndex = 2;
+            addFoodCalorie.Dock = DockStyle.Fill;
+            addFoodCalorie.Location = new Point(3, 32);
+            addFoodCalorie.Name = "addFoodCalorie";
+            addFoodCalorie.Size = new Size(449, 23);
+            addFoodCalorie.TabIndex = 2;
             // 
             // label1
             // 
@@ -1184,23 +1408,25 @@
             label1.TabIndex = 0;
             label1.Text = "Nazwa";
             // 
-            // textBox1
+            // addFoodName
             // 
-            textBox1.Dock = DockStyle.Fill;
-            textBox1.Location = new Point(3, 3);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(449, 23);
-            textBox1.TabIndex = 1;
+            addFoodName.Dock = DockStyle.Fill;
+            addFoodName.Location = new Point(3, 3);
+            addFoodName.Name = "addFoodName";
+            addFoodName.Size = new Size(449, 23);
+            addFoodName.TabIndex = 1;
             // 
-            // errorAddFoodItemLabel
+            // addFoodLBL
             // 
-            errorAddFoodItemLabel.Anchor = AnchorStyles.None;
-            errorAddFoodItemLabel.AutoSize = true;
-            errorAddFoodItemLabel.Location = new Point(345, 308);
-            errorAddFoodItemLabel.Name = "errorAddFoodItemLabel";
-            errorAddFoodItemLabel.Size = new Size(101, 15);
-            errorAddFoodItemLabel.TabIndex = 7;
-            errorAddFoodItemLabel.Text = "TEMP: Informacja";
+            addFoodLBL.Anchor = AnchorStyles.None;
+            addFoodLBL.AutoSize = true;
+            addFoodLBL.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            addFoodLBL.ForeColor = Color.Lime;
+            addFoodLBL.Location = new Point(323, 305);
+            addFoodLBL.Name = "addFoodLBL";
+            addFoodLBL.Size = new Size(144, 21);
+            addFoodLBL.TabIndex = 7;
+            addFoodLBL.Text = "TEMP: Informacja";
             // 
             // editHistory
             // 
@@ -1209,7 +1435,7 @@
             editHistory.Name = "editHistory";
             editHistory.Size = new Size(792, 422);
             editHistory.TabIndex = 6;
-            editHistory.Text = "Edit History Record";
+            editHistory.Text = "Edit Historię";
             editHistory.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel15
@@ -1382,11 +1608,399 @@
             // 
             editHistoryLabel.Anchor = AnchorStyles.None;
             editHistoryLabel.AutoSize = true;
-            editHistoryLabel.Location = new Point(345, 308);
+            editHistoryLabel.Location = new Point(395, 308);
             editHistoryLabel.Name = "editHistoryLabel";
-            editHistoryLabel.Size = new Size(101, 15);
+            editHistoryLabel.Size = new Size(0, 15);
             editHistoryLabel.TabIndex = 7;
-            editHistoryLabel.Text = "TEMP: Informacja";
+            // 
+            // editFood
+            // 
+            editFood.Controls.Add(tableLayoutPanel17);
+            editFood.Location = new Point(4, 24);
+            editFood.Name = "editFood";
+            editFood.Size = new Size(792, 422);
+            editFood.TabIndex = 7;
+            editFood.Text = "Edytuj jedzenie";
+            editFood.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel17
+            // 
+            tableLayoutPanel17.ColumnCount = 3;
+            tableLayoutPanel17.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
+            tableLayoutPanel17.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 80F));
+            tableLayoutPanel17.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
+            tableLayoutPanel17.Controls.Add(label19, 1, 0);
+            tableLayoutPanel17.Controls.Add(editFoodUpdateBTN, 1, 3);
+            tableLayoutPanel17.Controls.Add(tableLayoutPanel18, 1, 1);
+            tableLayoutPanel17.Controls.Add(editFoodLBL, 1, 2);
+            tableLayoutPanel17.Dock = DockStyle.Fill;
+            tableLayoutPanel17.Location = new Point(0, 0);
+            tableLayoutPanel17.Name = "tableLayoutPanel17";
+            tableLayoutPanel17.RowCount = 4;
+            tableLayoutPanel17.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            tableLayoutPanel17.RowStyles.Add(new RowStyle(SizeType.Percent, 60F));
+            tableLayoutPanel17.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            tableLayoutPanel17.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            tableLayoutPanel17.Size = new Size(792, 422);
+            tableLayoutPanel17.TabIndex = 2;
+            // 
+            // label19
+            // 
+            label19.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            label19.AutoSize = true;
+            label19.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label19.Location = new Point(82, 0);
+            label19.Name = "label19";
+            label19.Size = new Size(209, 42);
+            label19.TabIndex = 4;
+            label19.Text = "Edytuj rekord";
+            // 
+            // editFoodUpdateBTN
+            // 
+            editFoodUpdateBTN.Anchor = AnchorStyles.Top;
+            editFoodUpdateBTN.Enabled = false;
+            editFoodUpdateBTN.Font = new Font("Segoe UI", 21.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            editFoodUpdateBTN.Location = new Point(101, 340);
+            editFoodUpdateBTN.Name = "editFoodUpdateBTN";
+            editFoodUpdateBTN.Size = new Size(589, 63);
+            editFoodUpdateBTN.TabIndex = 5;
+            editFoodUpdateBTN.Text = "Brak rekordu do edycji";
+            editFoodUpdateBTN.UseVisualStyleBackColor = true;
+            editFoodUpdateBTN.Click += editFoodUpdateBTN_Click;
+            // 
+            // tableLayoutPanel18
+            // 
+            tableLayoutPanel18.ColumnCount = 2;
+            tableLayoutPanel18.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel18.ColumnStyles.Add(new ColumnStyle());
+            tableLayoutPanel18.Controls.Add(label38, 1, 6);
+            tableLayoutPanel18.Controls.Add(editFoodGramsInPortion, 0, 6);
+            tableLayoutPanel18.Controls.Add(editFoodCaffeine, 0, 5);
+            tableLayoutPanel18.Controls.Add(editFoodSalts, 0, 3);
+            tableLayoutPanel18.Controls.Add(editFoodName, 0, 0);
+            tableLayoutPanel18.Controls.Add(editFoodProtein, 0, 4);
+            tableLayoutPanel18.Controls.Add(label20, 1, 4);
+            tableLayoutPanel18.Controls.Add(label25, 1, 3);
+            tableLayoutPanel18.Controls.Add(label26, 1, 2);
+            tableLayoutPanel18.Controls.Add(editFoodFats, 0, 2);
+            tableLayoutPanel18.Controls.Add(label27, 1, 1);
+            tableLayoutPanel18.Controls.Add(editFoodCalorie, 0, 1);
+            tableLayoutPanel18.Controls.Add(label28, 1, 0);
+            tableLayoutPanel18.Controls.Add(label37, 1, 5);
+            tableLayoutPanel18.Dock = DockStyle.Fill;
+            tableLayoutPanel18.Location = new Point(82, 45);
+            tableLayoutPanel18.Name = "tableLayoutPanel18";
+            tableLayoutPanel18.RowCount = 9;
+            tableLayoutPanel18.RowStyles.Add(new RowStyle());
+            tableLayoutPanel18.RowStyles.Add(new RowStyle());
+            tableLayoutPanel18.RowStyles.Add(new RowStyle());
+            tableLayoutPanel18.RowStyles.Add(new RowStyle());
+            tableLayoutPanel18.RowStyles.Add(new RowStyle());
+            tableLayoutPanel18.RowStyles.Add(new RowStyle());
+            tableLayoutPanel18.RowStyles.Add(new RowStyle());
+            tableLayoutPanel18.RowStyles.Add(new RowStyle());
+            tableLayoutPanel18.RowStyles.Add(new RowStyle());
+            tableLayoutPanel18.Size = new Size(627, 247);
+            tableLayoutPanel18.TabIndex = 6;
+            // 
+            // label38
+            // 
+            label38.AutoSize = true;
+            label38.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label38.Location = new Point(493, 174);
+            label38.Name = "label38";
+            label38.Size = new Size(130, 25);
+            label38.TabIndex = 18;
+            label38.Text = "Gram w porcji";
+            // 
+            // editFoodGramsInPortion
+            // 
+            editFoodGramsInPortion.Dock = DockStyle.Fill;
+            editFoodGramsInPortion.Location = new Point(3, 177);
+            editFoodGramsInPortion.Name = "editFoodGramsInPortion";
+            editFoodGramsInPortion.Size = new Size(484, 23);
+            editFoodGramsInPortion.TabIndex = 17;
+            // 
+            // editFoodCaffeine
+            // 
+            editFoodCaffeine.Dock = DockStyle.Fill;
+            editFoodCaffeine.Location = new Point(3, 148);
+            editFoodCaffeine.Name = "editFoodCaffeine";
+            editFoodCaffeine.Size = new Size(484, 23);
+            editFoodCaffeine.TabIndex = 16;
+            // 
+            // editFoodSalts
+            // 
+            editFoodSalts.Dock = DockStyle.Fill;
+            editFoodSalts.Location = new Point(3, 90);
+            editFoodSalts.Name = "editFoodSalts";
+            editFoodSalts.Size = new Size(484, 23);
+            editFoodSalts.TabIndex = 14;
+            // 
+            // editFoodName
+            // 
+            editFoodName.Dock = DockStyle.Fill;
+            editFoodName.Location = new Point(3, 3);
+            editFoodName.Name = "editFoodName";
+            editFoodName.Size = new Size(484, 23);
+            editFoodName.TabIndex = 13;
+            // 
+            // editFoodProtein
+            // 
+            editFoodProtein.Dock = DockStyle.Fill;
+            editFoodProtein.Location = new Point(3, 119);
+            editFoodProtein.Name = "editFoodProtein";
+            editFoodProtein.Size = new Size(484, 23);
+            editFoodProtein.TabIndex = 12;
+            // 
+            // label20
+            // 
+            label20.AutoSize = true;
+            label20.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label20.Location = new Point(493, 116);
+            label20.Name = "label20";
+            label20.Size = new Size(130, 25);
+            label20.TabIndex = 11;
+            label20.Text = "Proteiny/100g";
+            // 
+            // label25
+            // 
+            label25.AutoSize = true;
+            label25.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label25.Location = new Point(493, 87);
+            label25.Name = "label25";
+            label25.Size = new Size(96, 25);
+            label25.TabIndex = 7;
+            label25.Text = "Sole/100g";
+            // 
+            // label26
+            // 
+            label26.AutoSize = true;
+            label26.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label26.Location = new Point(493, 58);
+            label26.Name = "label26";
+            label26.Size = new Size(131, 25);
+            label26.TabIndex = 5;
+            label26.Text = "Tłuszcze/100g";
+            // 
+            // editFoodFats
+            // 
+            editFoodFats.Dock = DockStyle.Fill;
+            editFoodFats.Location = new Point(3, 61);
+            editFoodFats.Name = "editFoodFats";
+            editFoodFats.Size = new Size(484, 23);
+            editFoodFats.TabIndex = 4;
+            // 
+            // label27
+            // 
+            label27.AutoSize = true;
+            label27.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label27.Location = new Point(493, 29);
+            label27.Name = "label27";
+            label27.Size = new Size(120, 25);
+            label27.TabIndex = 3;
+            label27.Text = "Calorie/100g";
+            // 
+            // editFoodCalorie
+            // 
+            editFoodCalorie.Dock = DockStyle.Fill;
+            editFoodCalorie.Location = new Point(3, 32);
+            editFoodCalorie.Name = "editFoodCalorie";
+            editFoodCalorie.Size = new Size(484, 23);
+            editFoodCalorie.TabIndex = 2;
+            // 
+            // label28
+            // 
+            label28.AutoSize = true;
+            label28.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label28.Location = new Point(493, 0);
+            label28.Name = "label28";
+            label28.Size = new Size(69, 25);
+            label28.TabIndex = 0;
+            label28.Text = "Nazwa";
+            // 
+            // label37
+            // 
+            label37.AutoSize = true;
+            label37.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label37.Location = new Point(493, 145);
+            label37.Name = "label37";
+            label37.Size = new Size(124, 25);
+            label37.TabIndex = 15;
+            label37.Text = "Kofeina/100g";
+            // 
+            // editFoodLBL
+            // 
+            editFoodLBL.Anchor = AnchorStyles.None;
+            editFoodLBL.AutoSize = true;
+            editFoodLBL.Location = new Point(395, 308);
+            editFoodLBL.Name = "editFoodLBL";
+            editFoodLBL.Size = new Size(0, 15);
+            editFoodLBL.TabIndex = 7;
+            // 
+            // editNote
+            // 
+            editNote.Controls.Add(tableLayoutPanel19);
+            editNote.Location = new Point(4, 24);
+            editNote.Name = "editNote";
+            editNote.Size = new Size(792, 422);
+            editNote.TabIndex = 8;
+            editNote.Text = "Edytuj notatkę";
+            editNote.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel19
+            // 
+            tableLayoutPanel19.ColumnCount = 3;
+            tableLayoutPanel19.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
+            tableLayoutPanel19.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 80F));
+            tableLayoutPanel19.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 10F));
+            tableLayoutPanel19.Controls.Add(label30, 1, 0);
+            tableLayoutPanel19.Controls.Add(button2, 1, 3);
+            tableLayoutPanel19.Controls.Add(tableLayoutPanel20, 1, 1);
+            tableLayoutPanel19.Controls.Add(label36, 1, 2);
+            tableLayoutPanel19.Dock = DockStyle.Fill;
+            tableLayoutPanel19.Location = new Point(0, 0);
+            tableLayoutPanel19.Name = "tableLayoutPanel19";
+            tableLayoutPanel19.RowCount = 4;
+            tableLayoutPanel19.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            tableLayoutPanel19.RowStyles.Add(new RowStyle(SizeType.Percent, 60F));
+            tableLayoutPanel19.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            tableLayoutPanel19.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
+            tableLayoutPanel19.Size = new Size(792, 422);
+            tableLayoutPanel19.TabIndex = 2;
+            // 
+            // label30
+            // 
+            label30.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            label30.AutoSize = true;
+            label30.Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label30.Location = new Point(82, 0);
+            label30.Name = "label30";
+            label30.Size = new Size(209, 42);
+            label30.TabIndex = 4;
+            label30.Text = "Edytuj rekord";
+            // 
+            // button2
+            // 
+            button2.Anchor = AnchorStyles.Top;
+            button2.Enabled = false;
+            button2.Font = new Font("Segoe UI", 21.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button2.Location = new Point(101, 340);
+            button2.Name = "button2";
+            button2.Size = new Size(589, 63);
+            button2.TabIndex = 5;
+            button2.Text = "Brak rekordu do edycji";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel20
+            // 
+            tableLayoutPanel20.ColumnCount = 2;
+            tableLayoutPanel20.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel20.ColumnStyles.Add(new ColumnStyle());
+            tableLayoutPanel20.Controls.Add(label32, 0, 2);
+            tableLayoutPanel20.Controls.Add(label34, 1, 1);
+            tableLayoutPanel20.Controls.Add(dateTimePicker2, 0, 0);
+            tableLayoutPanel20.Controls.Add(label35, 1, 0);
+            tableLayoutPanel20.Controls.Add(checkBox1, 0, 3);
+            tableLayoutPanel20.Controls.Add(label31, 1, 6);
+            tableLayoutPanel20.Controls.Add(textBox13, 0, 1);
+            tableLayoutPanel20.Controls.Add(comboBox2, 0, 6);
+            tableLayoutPanel20.Dock = DockStyle.Fill;
+            tableLayoutPanel20.Location = new Point(82, 45);
+            tableLayoutPanel20.Name = "tableLayoutPanel20";
+            tableLayoutPanel20.RowCount = 7;
+            tableLayoutPanel20.RowStyles.Add(new RowStyle());
+            tableLayoutPanel20.RowStyles.Add(new RowStyle());
+            tableLayoutPanel20.RowStyles.Add(new RowStyle());
+            tableLayoutPanel20.RowStyles.Add(new RowStyle());
+            tableLayoutPanel20.RowStyles.Add(new RowStyle());
+            tableLayoutPanel20.RowStyles.Add(new RowStyle());
+            tableLayoutPanel20.RowStyles.Add(new RowStyle());
+            tableLayoutPanel20.Size = new Size(627, 247);
+            tableLayoutPanel20.TabIndex = 6;
+            // 
+            // label32
+            // 
+            label32.AutoSize = true;
+            label32.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label32.Location = new Point(3, 58);
+            label32.Name = "label32";
+            label32.Size = new Size(0, 25);
+            label32.TabIndex = 12;
+            // 
+            // label34
+            // 
+            label34.AutoSize = true;
+            label34.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label34.Location = new Point(539, 29);
+            label34.Name = "label34";
+            label34.Size = new Size(78, 25);
+            label34.TabIndex = 3;
+            label34.Text = "Notatka";
+            // 
+            // dateTimePicker2
+            // 
+            dateTimePicker2.Anchor = AnchorStyles.Right;
+            dateTimePicker2.Location = new Point(333, 3);
+            dateTimePicker2.Name = "dateTimePicker2";
+            dateTimePicker2.Size = new Size(200, 23);
+            dateTimePicker2.TabIndex = 8;
+            // 
+            // label35
+            // 
+            label35.AutoSize = true;
+            label35.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label35.Location = new Point(539, 0);
+            label35.Name = "label35";
+            label35.Size = new Size(51, 25);
+            label35.TabIndex = 0;
+            label35.Text = "Data";
+            // 
+            // checkBox1
+            // 
+            checkBox1.AutoSize = true;
+            checkBox1.Location = new Point(3, 86);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new Size(122, 19);
+            checkBox1.TabIndex = 11;
+            checkBox1.Text = "Dodaj z jedzeniem";
+            checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // label31
+            // 
+            label31.AutoSize = true;
+            label31.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label31.Location = new Point(539, 108);
+            label31.Name = "label31";
+            label31.Size = new Size(85, 25);
+            label31.TabIndex = 10;
+            label31.Text = "Jedzenie";
+            // 
+            // textBox13
+            // 
+            textBox13.Dock = DockStyle.Fill;
+            textBox13.Location = new Point(3, 32);
+            textBox13.Name = "textBox13";
+            textBox13.Size = new Size(530, 23);
+            textBox13.TabIndex = 2;
+            // 
+            // comboBox2
+            // 
+            comboBox2.Dock = DockStyle.Fill;
+            comboBox2.FormattingEnabled = true;
+            comboBox2.Location = new Point(3, 111);
+            comboBox2.Name = "comboBox2";
+            comboBox2.Size = new Size(530, 23);
+            comboBox2.TabIndex = 9;
+            // 
+            // label36
+            // 
+            label36.Anchor = AnchorStyles.None;
+            label36.AutoSize = true;
+            label36.Location = new Point(395, 308);
+            label36.Name = "label36";
+            label36.Size = new Size(0, 15);
+            label36.TabIndex = 7;
             // 
             // MainView
             // 
@@ -1430,6 +2044,11 @@
             flowLayoutPanel3.PerformLayout();
             flowLayoutPanel5.ResumeLayout(false);
             flowLayoutPanel5.PerformLayout();
+            addNote.ResumeLayout(false);
+            tableLayoutPanel21.ResumeLayout(false);
+            tableLayoutPanel21.PerformLayout();
+            flowLayoutPanel6.ResumeLayout(false);
+            flowLayoutPanel6.PerformLayout();
             addFoodPage.ResumeLayout(false);
             tableLayoutPanel3.ResumeLayout(false);
             tableLayoutPanel3.PerformLayout();
@@ -1440,6 +2059,16 @@
             tableLayoutPanel15.PerformLayout();
             tableLayoutPanel16.ResumeLayout(false);
             tableLayoutPanel16.PerformLayout();
+            editFood.ResumeLayout(false);
+            tableLayoutPanel17.ResumeLayout(false);
+            tableLayoutPanel17.PerformLayout();
+            tableLayoutPanel18.ResumeLayout(false);
+            tableLayoutPanel18.PerformLayout();
+            editNote.ResumeLayout(false);
+            tableLayoutPanel19.ResumeLayout(false);
+            tableLayoutPanel19.PerformLayout();
+            tableLayoutPanel20.ResumeLayout(false);
+            tableLayoutPanel20.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -1471,20 +2100,20 @@
         private Button addFoodBtn;
         private TableLayoutPanel tableLayoutPanel4;
         private Label label6;
-        private TextBox textBox6;
+        private TextBox addFoodCafeine;
         private Label label5;
-        private TextBox textBox5;
+        private TextBox addFoodProteine;
         private Label label4;
-        private TextBox textBox4;
+        private TextBox addFoodSalts;
         private Label label3;
-        private TextBox textBox3;
+        private TextBox addFoodFats;
         private Label label2;
-        private TextBox textBox2;
+        private TextBox addFoodCalorie;
         private Label label1;
-        private TextBox textBox1;
+        private TextBox addFoodName;
         private Label label8;
-        private TextBox textBox7;
-        private Label errorAddFoodItemLabel;
+        private TextBox addFoodGramsInPortion;
+        private Label addFoodLBL;
         private TableLayoutPanel tableLayoutPanel5;
         private Label label9;
         private Label label10;
@@ -1526,15 +2155,15 @@
         private ListBox listBox1;
         private TabPage editHistory;
         private TableLayoutPanel tableLayoutPanel11;
-        private ListBox listBox2;
+        private ListBox foodListBox;
         private TableLayoutPanel tableLayoutPanel12;
-        private TextBox textBox8;
-        private Button button5;
+        private TextBox foodSearchBox;
+        private Button foodSearchBtn;
         private TableLayoutPanel tableLayoutPanel13;
-        private Button button1;
-        private Button button2;
-        private Button button3;
-        private Button button4;
+        private Button foodNextBtn;
+        private Button foodBackBtn;
+        private Button foodEditBtn;
+        private Button foodDeleteBtn;
         private TableLayoutPanel tableLayoutPanel15;
         private Label label17;
         private Button editHistoryEditBtn;
@@ -1550,5 +2179,56 @@
         private ComboBox editHistoryCombo;
         private Label label18;
         private TextBox editHistoryRecordId;
+        private TabPage editFood;
+        private TableLayoutPanel tableLayoutPanel17;
+        private Label label19;
+        private Button editFoodUpdateBTN;
+        private Label editFoodLBL;
+        private TabPage editNote;
+        private TableLayoutPanel tableLayoutPanel19;
+        private Label label30;
+        private Button button2;
+        private TableLayoutPanel tableLayoutPanel20;
+        private Label label34;
+        private TextBox textBox13;
+        private DateTimePicker dateTimePicker2;
+        private ComboBox comboBox2;
+        private Label label35;
+        private Label label36;
+        private TableLayoutPanel tableLayoutPanel18;
+        private Label label38;
+        private TextBox editFoodGramsInPortion;
+        private TextBox editFoodCaffeine;
+        private TextBox editFoodSalts;
+        private TextBox editFoodName;
+        private TextBox editFoodProtein;
+        private Label label20;
+        private Label label25;
+        private Label label26;
+        private TextBox editFoodFats;
+        private Label label27;
+        private TextBox editFoodCalorie;
+        private Label label28;
+        private Label label37;
+        private Label label31;
+        private CheckBox checkBox1;
+        private Label label32;
+        private TabPage addNote;
+        private TableLayoutPanel tableLayoutPanel21;
+        private Label label29;
+        private FlowLayoutPanel flowLayoutPanel6;
+        private Label label33;
+        private DateTimePicker dateTimePicker1;
+        private CheckBox checkBox2;
+        private ComboBox comboBox1;
+        private Button addNoteAddBTN;
+        private Label label41;
+        private TextBox addNoteTextBox;
+        private Label label39;
+        private DateTimePicker addNoteDate;
+        private Label label40;
+        private CheckBox addNoteCheckBox;
+        private ComboBox addNoteCB;
+        private Label addNoteLBL;
     }
 }

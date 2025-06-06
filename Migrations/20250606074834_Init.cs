@@ -80,26 +80,27 @@ namespace Calorie_Tracker.Migrations
                 columns: new[] { "Id", "Caffeine", "Calorie", "Fats", "GramsInPortion", "Name", "Protein", "Salts" },
                 values: new object[,]
                 {
-                    { 1, null, 1400m, 13.4m, 160m, "Pizza", 10m, 14m },
-                    { 2, null, 900m, 16.4m, 30m, "Spaghetti", 20m, 18m },
+                    { 1, null, 300m, 13.4m, 132m, "Pizza", 10m, 14m },
+                    { 2, null, 225m, 16.4m, 140m, "Spaghetti", 20m, 18m },
                     { 3, null, 165m, 3.6m, 100m, "Chicken Breast", 31m, 0.7m },
-                    { 4, null, 52m, 0.2m, 150m, "Apple", 0.3m, 0m },
-                    { 5, null, 89m, 0.3m, 120m, "Banana", 1.1m, 0m },
-                    { 6, null, 55m, 0.6m, 100m, "Broccoli", 3.7m, 0.05m },
+                    { 4, null, 90m, 0.2m, 150m, "Apple", 0.3m, 0m },
+                    { 5, null, 100m, 0.3m, 120m, "Banana", 1.1m, 0m },
+                    { 6, null, 120m, 0.6m, 100m, "Broccoli", 3.7m, 0.05m },
                     { 7, null, 208m, 13m, 100m, "Salmon", 20m, 0.1m },
-                    { 8, null, 160m, 15m, 100m, "Avocado", 2m, 0.01m },
-                    { 9, null, 130m, 0.3m, 100m, "Rice", 2.7m, 0m },
+                    { 8, null, 90m, 15m, 100m, "Avocado", 2m, 0.01m },
+                    { 9, null, 200m, 0.3m, 100m, "Rice", 2.7m, 0m },
                     { 10, null, 303m, 14m, 120m, "Cheeseburger", 17m, 1.2m },
                     { 11, null, 312m, 15m, 100m, "French Fries", 3.4m, 0.6m },
-                    { 12, null, 47m, 0.1m, 130m, "Orange", 0.9m, 0m },
+                    { 12, null, 90m, 0.1m, 130m, "Orange", 0.9m, 0m },
                     { 13, null, 155m, 11m, 60m, "Egg", 13m, 0.1m },
                     { 14, null, 42m, 1m, 100m, "Milk", 3.4m, 0.05m },
                     { 15, null, 59m, 0.4m, 150m, "Yogurt", 10m, 0.1m },
                     { 16, null, 588m, 50m, 100m, "Peanut Butter", 25m, 1.2m },
                     { 17, null, 579m, 49m, 100m, "Almonds", 21m, 0m },
                     { 18, null, 68m, 1.4m, 40m, "Oatmeal", 2.4m, 0m },
-                    { 19, 47m, 1m, 0m, 250m, "Tea", 0m, 0m },
-                    { 20, 95m, 2m, 0m, 250m, "Coffee", 0.3m, 0m }
+                    { 19, 5m, 1m, 0m, 250m, "Tea", 0m, 0m },
+                    { 20, 25m, 2m, 0m, 250m, "Coffee", 0.3m, 0m },
+                    { 21, 100m, 0m, 0m, 10000m, "Brain Implosion Energy Drink", 0m, 0m }
                 });
 
             migrationBuilder.InsertData(

@@ -66,6 +66,12 @@ public class FoodsService : IDisposable
         if (existing == null) return;
 
         existing.Name = updatedFood.Name;
+        existing.Calorie = updatedFood.Calorie;
+        existing.Fats = updatedFood.Fats;
+        existing.Salts = updatedFood.Salts;
+        existing.Protein = updatedFood.Protein;
+        existing.Caffeine = updatedFood.Caffeine;
+        existing.GramsInPortion = updatedFood.GramsInPortion;
 
         await _db.SaveChangesAsync();
     }
